@@ -1,6 +1,7 @@
 import pygame, sys, math, time, random
 from Ball import *
-from racket import *
+from Racket import *
+from LevelLoad import *
 pygame.init()
 
 balls = []
@@ -12,17 +13,22 @@ height = 800
 size = width, height
 
 for i in range(1):
-    images = ["ball.png"]
+    images = ["Ball/ball.png"]
     speed = [4,4]
     pos = [450,400]
     balls += [Ball(images[random.randint(0,0)], speed, pos)]
 
-rkt= racket("racket.png", 7, [width/2, height-10])
-rkt2= racket("racket.png", 7, [width/2, 0])
+rkt= racket("Racket/racket.png", 7, [width/2, height-10])
+rkt2= racket("Racket/racket.png", 7, [width/2, 0])
+
+
+
 
 bgColor = r,g,b = 150, 150, 150
 
 screen = pygame.display.set_mode(size)
+
+level= LoadLevel("Game/2.lvl")
 
 while True:
     for event in pygame.event.get():
@@ -70,7 +76,6 @@ while True:
         ball.collide(rkt)
         ball.collide(rkt2)
     
-            
     
     bgColor = r,g,b
     screen.fill(bgColor)
