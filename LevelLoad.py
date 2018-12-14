@@ -31,5 +31,5 @@ def loadLevel(levelFile):
     
     
     
-loadLevel("Game/2.lvl")
+#loadLevel("Game/2.lvl")
 

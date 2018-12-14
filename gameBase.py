@@ -2,6 +2,7 @@ import pygame, sys, math, time, random
 from Ball import *
 from Racket import *
 from LevelLoad import *
+from Block import *
 pygame.init()
 
 balls = []
@@ -28,7 +29,7 @@ bgColor = r,g,b = 150, 150, 150
 
 screen = pygame.display.set_mode(size)
 
-level= LoadLevel("Game/2.lvl")
+level= loadLevel("Levels/2.lvl")
 
 while True:
     for event in pygame.event.get():
@@ -75,7 +76,9 @@ while True:
         ball.update(size)
         ball.collide(rkt)
         ball.collide(rkt2)
-    
+        
+        
+        
     
     bgColor = r,g,b
     screen.fill(bgColor)
@@ -83,6 +86,8 @@ while True:
         screen.blit(ball.image, ball.rect)
     screen.blit(rkt.image, rkt.rect)
     screen.blit(rkt2.image, rkt2.rect)
+    for block in level:
+        screen.blit(block.image, block.rect)
     pygame.display.flip()
     clock.tick(60)
     print clock.get_fps()
