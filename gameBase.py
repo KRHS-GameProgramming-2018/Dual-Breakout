@@ -9,8 +9,8 @@ balls = []
 
 clock = pygame.time.Clock()
 
-width = 1200
-height = 800
+width = 1600
+height = 900
 size = width, height
 
 for i in range(1):
