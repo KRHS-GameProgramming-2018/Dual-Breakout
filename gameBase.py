@@ -71,14 +71,21 @@ while True:
     rkt.update(size)
     rkt2.update(size)
     
+    for block in level:
+        block.update()
     
     for ball in balls:
         ball.update(size)
         ball.collide(rkt)
         ball.collide(rkt2)
+        for block in level:
+            ball.collide(block)
+            block.pbcollide(ball)
         
         
-        
+    for block in level:
+        if not block.living:
+            level.remove(block)
     
     bgColor = r,g,b
     screen.fill(bgColor)
@@ -90,5 +97,5 @@ while True:
         screen.blit(block.image, block.rect)
     pygame.display.flip()
     clock.tick(60)
-    print clock.get_fps()
+    #print clock.get_fps()
 
