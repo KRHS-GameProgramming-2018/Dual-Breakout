@@ -5,4 +5,17 @@ class Block():
         self.image = pygame.image.load("Blocks/wall1.png")
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
-
+        self.hp = 1
+        self.living = True
+        
+    def pbcollide(self, other):
+        if self.rect.right > other.rect.left:
+            if self.rect.left < other.rect.right:
+                if self.rect.top < other.rect.bottom:
+                    if self.rect.bottom > other.rect.top:
+                        self.hp -= 1
+                        print "ouch"
+    
+    def update(self):
+        if self.hp <= 0:
+            self.living = False
