@@ -13,7 +13,7 @@ width = 1600
 height = 900
 size = width, height
 
-for i in range(1):
+for i in range(2):
     images = ["Ball/ball.png"]
     speed = [4,4]
     pos = [450,400]
@@ -25,7 +25,7 @@ rkt2= racket("Racket/racket.png", 7, [width/2, 0])
 
 
 
-bgColor = r,g,b = 150, 150, 150
+bgColor = r,g,b = 70, 70 , 70
 
 screen = pygame.display.set_mode(size)
 
