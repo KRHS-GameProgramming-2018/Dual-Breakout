@@ -3,7 +3,21 @@ import pygame, sys, math
 
 class Ball():
     def __init__(self, image, speed=[5,5], startPos=[0,0]):
-        self.image = pygame.image.load(image)
+        self.images= [pygame.image.load("Ball/ball.png"),
+                      pygame.image.load("Ball/ballAni1.png"),
+                      pygame.image.load("Ball/ballAni3.png"),
+                      pygame.image.load("Ball/ballAni4.png"),
+                      pygame.image.load("Ball/ballAni5.png"),
+                      pygame.image.load("Ball/ballAni6.png"),
+                      pygame.image.load("Ball/ballAni7.png"),
+                      pygame.image.load("Ball/ballAni8.png"),
+                      pygame.image.load("Ball/ballAni9.png"),
+                      pygame.image.load("Ball/ballAni10.png"),
+                      pygame.image.load("Ball/ballAni11.png"),
+                                        
+                                        ]
+                                        
+        self.image= self.images[0]
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
         self.speedy = speed[1]
@@ -12,7 +26,14 @@ class Ball():
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
         self.didBounceY = False
-    
+        
+        self.living = True
+        self.dying = False
+        self.frame = 0 
+        self.frameMax = len(self.images) -1 
+        self.frameTimer = 0
+        self.frameTimerMax = 60/4/len(self.images)
+        
     def getDist(self, pt):
         x1 = self.rect.centerx
         y1 = self.rect.centery
@@ -20,11 +41,7 @@ class Ball():
         y2 = pt[1]
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
             
-    def update(self, size):
-        self.didBounceX = False
-        self.didBounceY = False
-        self.move()
-        self.bounceWall(size)
+    
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
@@ -41,6 +58,28 @@ class Ball():
             if not self.didBounceY:
                 self.speedy = -self.speedy
                 self.didBounceY = True
+                self.dying = True
+                self.speedx = 0
+                self.speedy = 0
+
+    def update(self, size):
+        self.didBounceX = False
+        self.didBounceY = False
+        self.move()
+        self.bounceWall(size)
+        if self.dying == True:
+            if self.frameTimer < self.frameTimerMax :
+                self.frameTimer += 1
+            else:
+                self.frameTimer = 0
+                self.frame += 1
+                if self.frame > self.frameMax:
+                    self.living = False
+                    self.dying = False
+                    self.frame = 0
+                self.image = self.images[self.frame]
+                
+            
             
     def collide(self, other):
         if self.rect.right > other.rect.left:

@@ -13,7 +13,7 @@ width = 1600
 height = 900
 size = width, height
 
-for i in range(2):
+for i in range(1):
     images = ["Ball/ball.png"]
     speed = [4,4]
     pos = [450,400]
