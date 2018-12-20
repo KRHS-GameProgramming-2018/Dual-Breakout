@@ -22,3 +22,4 @@ class Block():
     def update(self):
         if self.hp <= 0:
             self.dying = True
+            self.living = False

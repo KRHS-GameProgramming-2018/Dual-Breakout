@@ -34,6 +34,9 @@ class Ball():
         self.frameTimer = 0
         self.frameTimerMax = 60/4/len(self.images)
         
+        self.startPos = startPos
+        self.startSpeed = speed
+        
     def getDist(self, pt):
         x1 = self.rect.centerx
         y1 = self.rect.centery
@@ -77,6 +80,9 @@ class Ball():
                     self.living = False
                     self.dying = False
                     self.frame = 0
+                    self.rect.center = self.startPos
+                    self.speedx = self.startSpeed[0]
+                    self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
                 
             

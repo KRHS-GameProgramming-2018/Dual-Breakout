@@ -19,8 +19,9 @@ for i in range(1):
     pos = [450,400]
     balls += [Ball(images[random.randint(0,0)], speed, pos)]
 
-rkt= racket("Racket/racket.png", 7, [width/2, height-10])
-rkt2= racket("Racket/racket.png", 7, [width/2, 0])
+
+rkt= racket("Racket/racket.png", 7, [width/2, height-20])
+rkt2= racket("Racket/racket.png", 7, [width/2, 20])
 
 
 
