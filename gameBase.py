@@ -13,7 +13,7 @@ width = 1600
 height = 900
 size = width, height
 
-for i in range(2):
+for i in range(1):
     images = ["Ball/ball.png"]
     speed = [4,4]
     pos = [200,100]
@@ -25,8 +25,9 @@ for i in range(2):
     pos = [100,50]
     balls += [Ball(images[random.randint(0,0)], speed, pos)]
 
-rkt= racket("Racket/racket.png", 7, [width/2, height-10])
-rkt2= racket("Racket/racket.png", 7, [width/2, 0])
+
+rkt= racket("Racket/racket.png", 7, [width/2, height-20])
+rkt2= racket("Racket/racket.png", 7, [width/2, 20])
 
 
 

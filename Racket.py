@@ -6,7 +6,7 @@ class racket(Ball):
     def __init__(self,image, speed = 5, startPos=[0,0]):
         Ball.__init__(self, image, [0,0], startPos)
         self.maxSpeed = speed
-        
+        self.image = pygame.image.load ("Racket/racket.png")
         
         
     def go(self, direction):
@@ -38,6 +38,17 @@ class racket(Ball):
             # ~ self.speedy = 0
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
+        
+    def bounceWall(self, size):
+        width = size[0]
+        height = size[1]
+        if self.rect.left < 0 or self.rect.right > width:
+            if not self.didBounceX:
+                self.speedx = -self.speedx
+                self.move()
+                self.speedx = 0
+        
+
 
             
     def pbcollide(self, other):

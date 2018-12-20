@@ -13,5 +13,6 @@ height= 900
 size = width, height
 
 
-def score_board(screen, p1s, p2s)
+def score_board(screen, p1s, p2s):
+    
 
