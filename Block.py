@@ -3,7 +3,7 @@ import pygame, sys, math
 class Block():
     def __init__(self,  pos=[0,0]):
         self.images = [pygame.image.load("Blocks/Orange/orange1.png")]
-                       
+        self.image = self.images[0]               
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.hp = 1

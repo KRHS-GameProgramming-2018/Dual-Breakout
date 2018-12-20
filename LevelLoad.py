@@ -26,8 +26,8 @@ def loadLevel(levelFile):
         for x, character in enumerate(line):
             if character == '#':
                 level += [Block([x*50+25, y*50+25])]
-            if character == '@':
-                balls += [1]
+            #if character == '@':
+              #  balls += [1]
              
     return level
     
