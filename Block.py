@@ -20,7 +20,7 @@ class Block():
         self.hp = 1
         
         self.living = True
-        self.dying = False
+        self.dying = True
         self.frame = 0 
         self.frameMax = len(self.images) -1 
         self.frameTimer = 0
