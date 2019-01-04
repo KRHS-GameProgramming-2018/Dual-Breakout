@@ -3,20 +3,17 @@ import pygame, sys, math
 class Block():
     def __init__(self,  pos=[0,0]):
         self.images = [pygame.image.load("Blocks/Orange/orange1.png"),
-                                        ("Blocks/Orange/orange2.png"),
-                                        ("Blocks/Orange/orange3.png"),
-                                        ("Blocks/Orange/orange4.png"),
-                                        ("Blocks/Red/red1.png"), 
-                                        ("Blocks/Red/red2.png"),
-                                        ("Blocks/Red/red3.png"),
-                                        ("Blocks/Red/red4.png"),
-                                        ("Blocks/Yellow/yellow1.png"),
-                                        ("Blocks/Yellow/yellow2.png"),
-                                        ("Blocks/Yellow/yellow3.png"),
-                                        ("Blocks/Yellow/yellow4.png")
-                       
-                        
-                         ]
+                       pygame.image.load("Blocks/Orange/orange2.png"),
+                       pygame.image.load("Blocks/Orange/orange3.png"),
+                       pygame.image.load("Blocks/Orange/orange4.png"),
+                       pygame.image.load("Blocks/Red/red1.png"), 
+                       pygame.image.load("Blocks/Red/red2.png"),
+                       pygame.image.load("Blocks/Red/red3.png"),
+                       pygame.image.load("Blocks/Red/red4.png"),
+                       pygame.image.load("Blocks/Yellow/yellow1.png"),
+                       pygame.image.load("Blocks/Yellow/yellow2.png"),
+                       pygame.image.load("Blocks/Yellow/yellow3.png"),
+                       pygame.image.load("Blocks/Yellow/yellow4.png")]
         self.image = self.images[0]               
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
