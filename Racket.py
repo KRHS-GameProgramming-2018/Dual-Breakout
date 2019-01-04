@@ -3,7 +3,7 @@ from Ball import *
 
 
 class racket(Ball):
-    def __init__(self,image, speed = 5, startPos=[0,0]):
+    def __init__(self,image, speed = 8, startPos=[0,0]):
         Ball.__init__(self, image, [0,0], startPos)
         self.maxSpeed = speed
         self.image = pygame.image.load ("Racket/racket.png")
