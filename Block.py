@@ -18,6 +18,7 @@ class Block():
                     if self.rect.bottom > other.rect.top:
                         self.hp -= 1
                         print "ouch"
+                        
     
     def update(self):
         if self.hp <= 0:

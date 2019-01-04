@@ -16,13 +16,13 @@ size = width, height
 for i in range(1):
     images = ["Ball/ball.png"]
     speed = [4,4]
-    pos = [200,100]
+    pos = [random.randint(300,1000),250]
     balls += [Ball(images[random.randint(0,0)], speed, pos)]
     
-for i in range(2):
+for i in range(1):
     images = ["Ball/ball.png"]
-    speed = [4,4]
-    pos = [100,50]
+    speed = [4,-4]
+    pos = [random.randint(600,1000),550]
     balls += [Ball(images[random.randint(0,0)], speed, pos)]
 
 
