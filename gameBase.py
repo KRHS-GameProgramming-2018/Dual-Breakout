@@ -27,7 +27,7 @@ for i in range(1):
     balls += [Ball(images[1], speed, pos)]
 
 
-rkt= racket("Racket/racket.png", 7, [width/2, height-20])
+rkt= racket("Racket/racket.png", 7, [width/2, height-10])
 rkt2= racket("Racket/racket.png", 7, [width/2, 10])
 
 
@@ -84,8 +84,10 @@ while True:
     
     for ball in balls:
         ball.update(size)
-        ball.collide(rkt)
-        ball.collide(rkt2)
+        if ball.collide(rkt):
+            print "racket 1"
+        if ball.collide(rkt2):
+            print "racket 2"
         for block in level:
             ball.collide(block)
             block.pbcollide(ball)
