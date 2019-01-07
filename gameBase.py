@@ -32,7 +32,7 @@ rkt2= racket("Racket/racket.png", 7, [width/2, 20])
 
 
 
-bgColor = r,g,b = 250, 250, 250
+bgColor = r,g,b = 50, 50, 50
 
 screen = pygame.display.set_mode(size)
 
