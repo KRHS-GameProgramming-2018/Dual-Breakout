@@ -32,10 +32,6 @@ class racket(Ball):
         
             
     def move(self):
-        # ~ if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
-            # ~ self.speedx = 0
-        # ~ if self.goal[1]-self.maxSpeed <= self.rect.centery <= self.goal[1]+self.maxSpeed:
-            # ~ self.speedy = 0
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         

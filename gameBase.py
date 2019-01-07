@@ -28,7 +28,7 @@ for i in range(1):
 
 
 rkt= racket("Racket/racket.png", 7, [width/2, height-20])
-rkt2= racket("Racket/racket.png", 7, [width/2, 20])
+rkt2= racket("Racket/racket.png", 7, [width/2, 10])
 
 
 

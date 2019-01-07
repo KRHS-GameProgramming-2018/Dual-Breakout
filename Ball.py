@@ -1,4 +1,4 @@
-import pygame, sys, math
+import pygame, sys, math, random
 
 
 class Ball():
@@ -82,7 +82,7 @@ class Ball():
                     self.living = False
                     self.dying = False
                     self.frame = 0
-                    self.rect.center = self.startPos
+                    self.rect.center = [random.randint(500,1100),250]
                     self.speedx = self.startSpeed[0]
                     self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
