@@ -1,4 +1,4 @@
-import pygame, sys, math
+import pygame, sys, math, random
 
 class Block():
     def __init__(self,  pos=[0,0]):
@@ -14,7 +14,8 @@ class Block():
                        pygame.image.load("Blocks/Yellow/yellow2.png"),
                        pygame.image.load("Blocks/Yellow/yellow3.png"),
                        pygame.image.load("Blocks/Yellow/yellow4.png")]
-        self.image = self.images[0]               
+        blockList = [0,4,8]
+        self.image = self.images[random.choice(blockList)]               
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.hp = 1
