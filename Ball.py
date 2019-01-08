@@ -1,4 +1,4 @@
-import pygame, sys, math
+import pygame, sys, math, random
 
 
 class Ball():
@@ -20,11 +20,11 @@ class Ball():
                                         ]
                                         
         self.image= self.images[0]
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(center = startPos)
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
-        self.rect = self.rect.move(startPos)
+        #self.rect = self.rect.move(startPos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
         self.didBounceY = False
@@ -82,7 +82,7 @@ class Ball():
                     self.living = False
                     self.dying = False
                     self.frame = 0
-                    self.rect.center = self.startPos
+                    self.rect.center = [random.randint(500,1100),250]
                     self.speedx = self.startSpeed[0]
                     self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
@@ -94,26 +94,25 @@ class Ball():
             if self.rect.left < other.rect.right:
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
-                        if self.radius + other.radius > self.getDist(other.rect.center):
-                            if not self.didBounceX:
-                                if self.speedx > 1: #right
-                                    if self.rect.centerx < other.rect.centerx:
-                                        self.speedx = -self.speedx
-                                        self.didBounceX = True
-                                if self.speedx < 1: #left
-                                    if self.rect.centerx > other.rect.centerx:
-                                        self.speedx = -self.speedx
-                                        self.didBounceX = True
-                                        
-                            if not self.didBounceY:
-                                if self.speedy > 1: #down
-                                    if self.rect.centery < other.rect.centery:
-                                        self.speedy = -self.speedy
-                                        self.didBounceY = True
-                                if self.speedy < 1: #up
-                                    if self.rect.centery > other.rect.centery:
-                                        self.speedy  = -self.speedy
-                                        self.didBounceY = True
+                        if not self.didBounceX:
+                            if self.speedx > 1: #right
+                                if self.rect.centerx < other.rect.centerx:
+                                    self.speedx = -self.speedx
+                                    self.didBounceX = True
+                            if self.speedx < 1: #left
+                                if self.rect.centerx > other.rect.centerx:
+                                    self.speedx = -self.speedx
+                                    self.didBounceX = True
+                                    
+                        if not self.didBounceY:
+                            if self.speedy > 1: #down
+                                if self.rect.centery < other.rect.centery:
+                                    self.speedy = -self.speedy
+                                    self.didBounceY = True
+                            if self.speedy < 1: #up
+                                if self.rect.centery > other.rect.centery:
+                                    self.speedy  = -self.speedy
+                                    self.didBounceY = True
 
                             return True
         return False
