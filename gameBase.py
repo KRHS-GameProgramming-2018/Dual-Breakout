@@ -106,6 +106,6 @@ while True:
     for block in level:
         screen.blit(block.image, block.rect)
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(100)
     #print clock.get_fps()
 
