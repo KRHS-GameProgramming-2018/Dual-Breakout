@@ -7,6 +7,7 @@ class racket(Ball):
         Ball.__init__(self, image, [0,0], startPos)
         self.maxSpeed = speed
         self.image = pygame.image.load ("Racket/racket.png")
+        self.rect = self.image.get_rect(center = self.rect.center)
         
         
     def go(self, direction):
