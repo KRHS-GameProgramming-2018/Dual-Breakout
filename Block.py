@@ -32,6 +32,7 @@ class Block():
             if self.rect.left < other.rect.right:
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
+                        
                         self.hp -= 1
                         print "ouch"
                         

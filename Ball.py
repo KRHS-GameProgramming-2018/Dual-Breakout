@@ -3,9 +3,10 @@ import pygame, sys, math, random
 
 class Ball():
     def __init__(self, image, speed=[5,5], startPos=[0,0]):
-        self.images= [pygame.image.load("Ball/ballA.png"),
-                      pygame.image.load("Ball/ballB.png"),
+        self.images= [
                       pygame.image.load("Ball/ball.png"),
+                      pygame.image.load("Ball/ballA.png"),
+                      pygame.image.load("Ball/ballB.png"),
                       pygame.image.load("Ball/ballAni1.png"),
                       pygame.image.load("Ball/ballAni3.png"),
                       pygame.image.load("Ball/ballAni4.png"),
@@ -34,7 +35,7 @@ class Ball():
         self.frame = 0 
         self.frameMax = len(self.images) -1 
         self.frameTimer = 0
-        self.frameTimerMax = 60/1/len(self.images)
+        self.frameTimerMax = 60/4/len(self.images)
         
         self.startPos = startPos
         self.startSpeed = speed
@@ -87,7 +88,12 @@ class Ball():
                     self.speedx = self.startSpeed[0]
                     self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
-                
+        if self.owner == 0:
+            self.image = self.frame[0]
+        if self.owner == 1:
+            self.image = self.frame[1]
+        if self.owner == 2:
+            self.image = self.frame[2]
             
             
     def collide(self, other):
