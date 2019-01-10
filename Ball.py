@@ -39,6 +39,8 @@ class Ball():
         self.startPos = startPos
         self.startSpeed = speed
         
+        self.owner = 0
+        
     def getDist(self, pt):
         x1 = self.rect.centerx
         y1 = self.rect.centery

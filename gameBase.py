@@ -86,8 +86,10 @@ while True:
         ball.update(size)
         if ball.collide(rkt):
             print "racket 1"
+            ball.owner = 1
         if ball.collide(rkt2):
             print "racket 2"
+            ball.owner = 2
         for block in level:
             ball.collide(block)
             block.pbcollide(ball)
@@ -106,6 +108,6 @@ while True:
     for block in level:
         screen.blit(block.image, block.rect)
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(45)
     #print clock.get_fps()
 
