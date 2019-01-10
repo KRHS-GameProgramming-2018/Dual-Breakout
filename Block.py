@@ -50,5 +50,5 @@ class Block():
                         self.frame = 0
                         #self.rect.center = self.startPos
                         #self.speedx = self.startSpeed[0]
-                        #self.speedy = self.startSpeed[1]
+                        #daself.speedy = self.startSpeed[1]
                     self.image = self.images[self.frame]
