@@ -75,7 +75,7 @@ while True:
     
         
     
-    
+    print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
     rkt.update(size)
     rkt2.update(size)
     
@@ -91,7 +91,11 @@ while True:
             print "racket 2"
             ball.owner = 2
         for block in level:
-            ball.collide(block)
+            if ball.collide(block):
+                if ball.owner == 1: 
+                    rkt.score +=1
+                elif ball.owner == 2:
+                    rkt2.score +=1
             block.pbcollide(ball)
         
         
