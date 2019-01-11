@@ -18,9 +18,15 @@ class racket(Ball):
         if direction == "right":
             self.speedx = self.maxSpeed
             
+    def update(self, size):
+        self.didBounceX = False
+        self.didBounceY = False
+        self.move()
+        self.bounceWall(size)
+        if self.owner == 0:
+            self.image = pygame.image.load ("Racket/racket.png")
         
-            
-            
+        
     def stop(self, direction):
         if direction == "left":
             self.speedx = 0
