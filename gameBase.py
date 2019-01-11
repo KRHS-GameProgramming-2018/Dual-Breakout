@@ -18,7 +18,7 @@ for i in range(1):
     speed = [4,4]
     pos = [random.randint(300,1000),250]
     balls += [Ball(images[0], speed, pos)]
-    
+
 for i in range(1):
     images = ["Ball/ball.png"]
     speed = [4,-4]
@@ -33,6 +33,9 @@ rkt2= racket("Racket/racket.png", 7, [width/2, 10])
 
 
 bgColor = r,g,b = 50, 50, 50
+
+bgimage = pygame.image.load("screens/backround1.png")
+bgrect = bgimage.get_rect()
 
 screen = pygame.display.set_mode(size)
 
@@ -104,6 +107,7 @@ while True:
     
     bgColor = r,g,b
     screen.fill(bgColor)
+    screen.blit(bgimage, bgrect)
     for ball in balls:
         screen.blit(ball.image, ball.rect)
     screen.blit(rkt.image, rkt.rect)
