@@ -116,5 +116,3 @@ while True:
         screen.blit(block.image, block.rect)
     pygame.display.flip()
     clock.tick(60)
-    #print clock.get_fps()
-
