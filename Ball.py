@@ -91,11 +91,11 @@ class Ball():
                     self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
         if self.owner == 0:
-            self.image = self.frame[0]
+            self.image = self.images[0]
         if self.owner == 1:
-            self.image = self.frame[1]
+            self.image = self.images[1]
         if self.owner == 2:
-            self.image = self.frame[2]
+            self.image = self.images[2]
             
             
     def collide(self, other):
