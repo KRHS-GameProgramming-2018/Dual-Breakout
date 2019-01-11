@@ -83,14 +83,14 @@ while True:
     
     for ball in balls:
         ball.update(size)
-        if ball.collide(rkt):
+        if ball.rktcollide(rkt):
             print "racket 1"
             ball.owner = 1
-        if ball.collide(rkt2):
+        if ball.rktcollide(rkt2):
             print "racket 2"
             ball.owner = 2
         for block in level:
-            if ball.collide(block):
+            if ball.blockcollide(block):
                 if ball.owner == 1: 
                     rkt.score +=1
                 elif ball.owner == 2:

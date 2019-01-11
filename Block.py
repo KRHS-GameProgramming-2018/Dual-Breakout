@@ -32,10 +32,16 @@ class Block():
             if self.rect.left < other.rect.right:
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
-                        
-                        self.hp -= 1
-                        print "ouch"
-                        
+                        if self.radius+other.radius > self.getDist(other.rect.center):
+                            self.hp -= 1
+                            print "ouch"
+              
+    def getDist(self, pt):
+        x1 = self.rect.centerx
+        y1 = self.rect.centery
+        x2 = pt[0]
+        y2 = pt[1]
+        return math.sqrt((x2-x1)**2 + (y2-y1)**2)
     
     def update(self):
         if self.hp <= 0:
