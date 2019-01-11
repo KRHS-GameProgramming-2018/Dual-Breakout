@@ -14,17 +14,16 @@ height = 900
 size = width, height
 
 for i in range(1):
-    images = ["Ball/ballA.png"]
+    images = ["Ball/ball.png"]
     speed = [4,4]
     pos = [random.randint(300,1000),250]
     balls += [Ball(images[0], speed, pos)]
     
 for i in range(1):
-    images = ["Ball/ballA.png",
-                "Ball/ballB.png"]
+    images = ["Ball/ball.png"]
     speed = [4,-4]
-    pos = [random.randint(600,1000),550]
-    balls += [Ball(images[1], speed, pos)]
+    pos = [random.randint(300,1000),550]
+    balls += [Ball(images[0], speed, pos)]
 
 
 rkt= racket("Racket/racket.png", 7, [width/2, height-10])
@@ -75,7 +74,7 @@ while True:
     
         
     
-    
+    print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
     rkt.update(size)
     rkt2.update(size)
     
@@ -86,10 +85,16 @@ while True:
         ball.update(size)
         if ball.collide(rkt):
             print "racket 1"
+            ball.owner = 1
         if ball.collide(rkt2):
             print "racket 2"
+            ball.owner = 2
         for block in level:
-            ball.collide(block)
+            if ball.collide(block):
+                if ball.owner == 1: 
+                    rkt.score +=1
+                elif ball.owner == 2:
+                    rkt2.score +=1
             block.pbcollide(ball)
         
         
@@ -106,6 +111,10 @@ while True:
     for block in level:
         screen.blit(block.image, block.rect)
     pygame.display.flip()
+<<<<<<< HEAD
     clock.tick(60)
+=======
+    clock.tick(45)
+>>>>>>> origin/master
     #print clock.get_fps()
 
