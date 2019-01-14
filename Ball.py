@@ -75,6 +75,12 @@ class Ball():
         self.didBounceY = False
         self.move()
         self.bounceWall(size)
+        if self.owner == 0:
+            self.image = self.images[0]
+        if self.owner == 1:
+            self.image = self.images[1]
+        if self.owner == 2:
+            self.image = self.images[2]
         if self.dying == True:
             if self.frameTimer < self.frameTimerMax :
                 self.frameTimer += 1
@@ -86,17 +92,16 @@ class Ball():
                     self.dying = False
                     self.frame = 0
                     spawnList = [250,550]
-                    self.rect.center = [random.randint(300,1300),random.choice(spawnList)]
+                    if self.owner == 0:
+                        self.rect.center = [random.randint(300,1300),random.choice(spawnList)]
+                    if self.owner == 1:
+                        self.rect.center = [random.randint(300,1300),550]
+                    if self.owner == 2:
+                        self.rect.center = [random.randint(300,1300),250]
                     self.speedx = self.startSpeed[0]
                     self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
-        if self.owner == 0:
-            self.image = self.images[0]
-        if self.owner == 1:
-            self.image = self.images[1]
-        if self.owner == 2:
-            self.image = self.images[2]
-            
+    
             
     def collide(self, other):
         if self.rect.right > other.rect.left:
