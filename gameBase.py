@@ -1,6 +1,7 @@
 import pygame, sys, math, time, random
 from Ball import *
 from Racket import *
+from Score import *
 from LevelLoad import *
 from Block import *
 pygame.init()
@@ -27,7 +28,9 @@ for i in range(1):
 
 
 rkt= racket("Racket/racket.png", 7, [width/2, height-10])
+rktScore = Score(0, [50, height-25])
 rkt2= racket("Racket/racket.png", 7, [width/2, 10])
+rkt2Score = Score(0, [width-50, 25])
 
 
 
@@ -81,6 +84,10 @@ while True:
     rkt.update(size)
     rkt2.update(size)
     
+    rktScore.update(rkt.score)
+    rkt2Score.update(rkt2.score)
+
+    
     for block in level:
         block.update()
     
@@ -108,6 +115,8 @@ while True:
     bgColor = r,g,b
     screen.fill(bgColor)
     screen.blit(bgimage, bgrect)
+    screen.blit(rktScore.image, rktScore.rect)
+    screen.blit(rkt2Score.image, rkt2Score.rect)
     for ball in balls:
         screen.blit(ball.image, ball.rect)
     screen.blit(rkt.image, rkt.rect)
