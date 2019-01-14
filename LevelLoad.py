@@ -8,7 +8,7 @@ def loadLevel(levelFile):
     
     level = []
     
-    #Block Size is 50x50
+    #Block Size is 50x50                   
     
     newLines = []
     for line in lines:
