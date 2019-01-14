@@ -58,6 +58,9 @@ while True:
                         if event.type == pygame.KEYDOWN:
                             if event.key == pygame.K_t:
                                 paused = False
+                                
+            if event.key ==pygame.K_ESC:
+                game.exit
             
             if event.key == pygame.K_LEFT:
                 rkt.go("left")
