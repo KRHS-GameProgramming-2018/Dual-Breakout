@@ -77,7 +77,7 @@ while True:
                 rkt.stop("right")
             if event.key == pygame.K_d:
                 rkt2.stop("right") 
-    
+            
         
     
     print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
