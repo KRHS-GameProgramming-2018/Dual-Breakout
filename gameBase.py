@@ -11,7 +11,7 @@ balls = []
 clock = pygame.time.Clock()
 
 width = 1600
-height = 900
+height = 950
 size = width, height
 
 for i in range(1):
@@ -77,7 +77,7 @@ while True:
                 rkt.stop("right")
             if event.key == pygame.K_d:
                 rkt2.stop("right") 
-    
+            
         
     
     print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
