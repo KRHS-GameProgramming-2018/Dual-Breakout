@@ -27,9 +27,9 @@ for i in range(1):
     balls += [Ball(images[0], speed, pos)]
 
 
-rkt= racket("Racket/racket.png", 7, [width/2, height-10])
+rkt= racket("Racket/racket.png", 15, [width/2, height-10])
 rktScore = Score(0, [50, height-25])
-rkt2= racket("Racket/racket.png", 7, [width/2, 10])
+rkt2= racket("Racket/racket.png", 15, [width/2, 10])
 rkt2Score = Score(0, [width-50, 25])
 
 
