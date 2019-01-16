@@ -18,7 +18,7 @@ class Ball():
                       pygame.image.load("Ball/ballAni10.png"),
                       pygame.image.load("Ball/ballAni11.png"),
                                         
-                                        
+                                        ]
                                         
         self.image= self.images[0]
         self.rect = self.image.get_rect(center = startPos)
