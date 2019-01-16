@@ -69,6 +69,7 @@ class Ball():
                 self.dying = True
                 self.speedx = 0
                 self.speedy = 0
+                self.owner = 0
 
     def update(self, size):
         self.didBounceX = False
