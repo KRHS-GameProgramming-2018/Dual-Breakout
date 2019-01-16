@@ -91,6 +91,7 @@ class Ball():
                     self.living = False
                     self.dying = False
                     self.frame = 0
+
                     spawnList = [300,650]
                     if self.owner == 0:
                         self.rect.center = [random.randint(300,1300),random.choice(spawnList)]
@@ -98,6 +99,7 @@ class Ball():
                         self.rect.center = [random.randint(300,1300),300]
                     if self.owner == 2:
                         self.rect.center = [random.randint(300,1300),650]
+
                     self.speedx = self.startSpeed[0]
                     self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
