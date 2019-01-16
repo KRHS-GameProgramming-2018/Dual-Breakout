@@ -35,7 +35,7 @@ class Ball():
         self.frame = 0 
         self.frameMax = len(self.images) -1 
         self.frameTimer = 0
-        self.frameTimerMax = 60/4/len(self.images)
+        self.frameTimerMax = 60/6/len(self.images)
         
         self.startPos = startPos
         self.startSpeed = speed
@@ -91,13 +91,13 @@ class Ball():
                     self.living = False
                     self.dying = False
                     self.frame = 0
-                    spawnList = [250,550]
+                    spawnList = [300,650]
                     if self.owner == 0:
                         self.rect.center = [random.randint(300,1300),random.choice(spawnList)]
                     if self.owner == 1:
-                        self.rect.center = [random.randint(300,1300),250]
+                        self.rect.center = [random.randint(300,1300),300]
                     if self.owner == 2:
-                        self.rect.center = [random.randint(300,1300),550]
+                        self.rect.center = [random.randint(300,1300),650]
                     self.speedx = self.startSpeed[0]
                     self.speedy = self.startSpeed[1]
                 self.image = self.images[self.frame]
