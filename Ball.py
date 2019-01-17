@@ -95,11 +95,11 @@ class Ball():
 
                     spawnList = [300,650]
                     if self.owner == 0:
-                        self.rect.center = [random.randint(300,1300),random.choice(spawnList)]
+                        self.rect.center = [random.randint(200,1000),random.choice(spawnList)]
                     if self.owner == 1:
-                        self.rect.center = [random.randint(300,1300),300]
+                        self.rect.center = [random.randint(200,1000),300]
                     if self.owner == 2:
-                        self.rect.center = [random.randint(300,1300),650]
+                        self.rect.center = [random.randint(200,1000),650]
 
                     self.speedx = self.startSpeed[0]
                     self.speedy = self.startSpeed[1]

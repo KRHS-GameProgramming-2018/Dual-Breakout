@@ -10,7 +10,7 @@ balls = []
 
 clock = pygame.time.Clock()
 
-width = 1200
+width =1200
 height = 950
 size = width, height
 
@@ -80,7 +80,8 @@ while True:
             
         
     
-    print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
+
+    #print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
     rkt.update(size)
     rkt2.update(size)
     
