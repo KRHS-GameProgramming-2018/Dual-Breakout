@@ -79,6 +79,8 @@ while True:
             if event.key == pygame.K_d:
                 rkt2.stop("right") 
             
+            
+            
         
     
 
