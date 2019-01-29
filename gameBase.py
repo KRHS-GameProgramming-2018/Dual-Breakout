@@ -6,15 +6,12 @@ from LevelLoad import *
 from Block import *
 pygame.init()
 
-balls = []
+balls = [] 
 
 clock = pygame.time.Clock()
 
-<<<<<<< HEAD
-width = 1800
-=======
 width = 1200
->>>>>>> origin/master
+
 height = 950
 size = width, height
 
@@ -129,3 +126,4 @@ while True:
         screen.blit(block.image, block.rect)
     pygame.display.flip()
     clock.tick(60)
+    print clock.get_fps()
