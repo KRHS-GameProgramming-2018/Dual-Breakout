@@ -10,7 +10,6 @@ balls = []
 
 clock = pygame.time.Clock()
 
-
 width = 1200
 height = 950
 size = width, height
