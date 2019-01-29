@@ -6,6 +6,8 @@ from LevelLoad import *
 from Block import *
 pygame.init()
 
+dbgTime = True
+
 balls = []
 
 clock = pygame.time.Clock()
@@ -47,7 +49,7 @@ level= loadLevel("Levels/2.lvl")
 start = time.clock()
 
 while True:
-    print "\nLoopTine:", time.clock() - start
+    if dbgTime: print "\nLoopTine:", time.clock() - start
     start = time.clock()
     for event in pygame.event.get():
         #print event.type
@@ -81,7 +83,7 @@ while True:
                 rkt.stop("right")
             if event.key == pygame.K_d:
                 rkt2.stop("right") 
-    print "\t Time after event:", time.clock() - start  
+    if dbgTime: print "\t Time after event:", time.clock() - start  
             
             
         
@@ -97,7 +99,7 @@ while True:
     for block in level:
         block.update()
         
-    print "\t Time after  update:", time.clock() - start  
+    if dbgTime: print "\t Time after  update:", time.clock() - start  
     
     for ball in balls:
         ball.update(size)
@@ -115,7 +117,7 @@ while True:
                     rkt2.score +=1
             block.pbcollide(ball)
             
-    print "\t Time after  collide:", time.clock() - start  
+    if dbgTime: print "\t Time after  collide:", time.clock() - start  
         
         
     for block in level:
@@ -125,20 +127,20 @@ while True:
     bgColor = r,g,b
     screen.fill(bgColor)
     screen.blit(bgimage, bgrect)
-    print "\t\t Time background  Draw:", time.clock() - start  
+    if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
     screen.blit(rktScore.image, rktScore.rect)
     screen.blit(rkt2Score.image, rkt2Score.rect)
-    print "\t\t Time score  Draw:", time.clock() - start  
+    if dbgTime: print "\t\t Time score  Draw:", time.clock() - start  
     for ball in balls:
         screen.blit(ball.image, ball.rect)
         print "\t\t Time balls  Draw:", time.clock() - start  
     screen.blit(rkt.image, rkt.rect)
     screen.blit(rkt2.image, rkt2.rect)
-    print "\t\t Time paddles  Draw:", time.clock() - start  
+    if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
     for block in level:
         screen.blit(block.image, block.rect)
-    print "\t\t Time blocks  Draw:", time.clock() - start  
+    if dbgTime: print "\t\t Time blocks  Draw:", time.clock() - start  
     pygame.display.flip()
     clock.tick(60)
-    print "\t Time after  Draw:", time.clock() - start  
+    if dbgTime: print "\t Time after  Draw:", time.clock() - start  
         
