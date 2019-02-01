@@ -36,7 +36,7 @@ rkt2Score = Score(0, [width-50, 25])
 
 
 
-
+  
 bgColor = r,g,b = 50, 50, 50
 
 bgimage = pygame.image.load("screens/backround1.png")
