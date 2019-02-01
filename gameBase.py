@@ -6,7 +6,7 @@ from LevelLoad import *
 from Block import *
 pygame.init()
 
-dbgTime = True
+dbgTime = False
 
 balls = []
 
@@ -38,6 +38,7 @@ rkt2Score = Score(0, [width-50, 25])
 
 startimage = pygame.image.load ("Screens/Start.png")
 startrect = startimage.get_rect()
+
 
 bgColor = r,g,b = 50, 50, 50
 
