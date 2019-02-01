@@ -36,6 +36,8 @@ rkt2Score = Score(0, [width-50, 25])
 
 
 
+startimage = pygame.image.load ("Screens/Start.png")
+startrect = startimage.get_rect()
 
 bgColor = r,g,b = 50, 50, 50
 
@@ -126,6 +128,7 @@ while True:
     
     bgColor = r,g,b
     screen.fill(bgColor)
+    screen.blit(startimage, startrect)
     screen.blit(bgimage, bgrect)
     if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
     screen.blit(rktScore.image, rktScore.rect)
