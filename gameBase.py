@@ -68,6 +68,9 @@ while True:
                             if event.key == pygame.K_t:
                                 paused = False
                                 
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()                       
+                                
             if event.key == pygame.K_LEFT:
                 rkt.go("left")
             if event.key == pygame.K_a:
@@ -86,6 +89,9 @@ while True:
                 rkt.stop("right")
             if event.key == pygame.K_d:
                 rkt2.stop("right") 
+                
+                
+        
     if dbgTime: print "\t Time after event:", time.clock() - start  
             
             
