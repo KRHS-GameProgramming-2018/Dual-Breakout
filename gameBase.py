@@ -88,6 +88,8 @@ while True:
                                 if event.key == pygame.K_t:
                                     paused = False
                                     
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit() 
                 if event.key == pygame.K_LEFT:
                     rkt.go("left")
                 if event.key == pygame.K_a:
@@ -139,6 +141,12 @@ while True:
                     elif ball.owner == 2:
                         rkt2.score +=1
                 block.pbcollide(ball)
+            if ball.rect.top <0 :
+                if rkt2.score >= 3:
+                    rkt2.score -= 3
+            if ball.rect.bottom > height :
+                if rkt.score >= 3:
+                    rkt.score -=3
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
