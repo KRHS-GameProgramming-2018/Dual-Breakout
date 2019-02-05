@@ -6,7 +6,7 @@ from LevelLoad import *
 from Block import *
 pygame.init()
 
-dbgTime = False
+dbgTime = True
 
 balls = []
 
