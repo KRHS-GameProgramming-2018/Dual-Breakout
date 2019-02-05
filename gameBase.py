@@ -47,7 +47,7 @@ bgrect = bgimage.get_rect()
 
 screen = pygame.display.set_mode(size)
 
-level= loadLevel("Levels/2.lvl")
+level= loadLevel("Levels/1.lvl")
 
 start = time.clock()
 
