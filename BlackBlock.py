@@ -1,6 +1,6 @@
 import pygame, sys, math, random
 
-class Block():
+class BlackBlock():
     def __init__(self,  pos=[0,0]):
         self.images = [pygame.image.load("Blocks/Black/black1.png"),
                        pygame.image.load("Blocks/Black/black2.png"),
@@ -10,17 +10,18 @@ class Block():
                        pygame.image.load("Blocks/Black/blackAni3.png"),
                        pygame.image.load("Blocks/Black/black1.png"),
                        ]
-        self.image = self.images[random.choice(blockList)]               
-        self.rect = self.image.get_rect(center=pos)
-        self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.hp = 3
         
         self.living = True
         self.dying = True
         self.frame = 0 
+        self.image = self.images[self.frame]  
         self.frameMax = len(self.images) -1 
         self.frameTimer = 0
-        self.frameTimerMax = 60/4/len(self.images)
+        self.frameTimerMax = 60/3/len(self.images)
+        self.rect = self.image.get_rect(center=pos)
+        self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        
         
     def pbcollide(self, other):
         if self.rect.right > other.rect.left:

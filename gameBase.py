@@ -26,6 +26,9 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
+level= loadLevel("Levels/1.lvl")
+
+
 
 
 start = time.clock()

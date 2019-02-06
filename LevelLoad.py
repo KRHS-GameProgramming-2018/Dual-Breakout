@@ -1,5 +1,6 @@
 import pygame, sys, math, random
 from Block import *
+from BlackBlock import *
 
 def loadLevel(levelFile):
     f = open(levelFile, 'r')
@@ -26,8 +27,8 @@ def loadLevel(levelFile):
         for x, character in enumerate(line):
             if character == '#':
                 level += [Block([x*50+25, y*50+25])]
-            if character == '@':
-                level += [1]
+            if character == '$':
+                level += [BlackBlock([x*50+25, y*50+25])]
              
     return level
     
