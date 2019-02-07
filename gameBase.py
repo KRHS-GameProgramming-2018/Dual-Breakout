@@ -27,7 +27,7 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-level= loadLevel("Levels/1.lvl")
+level= loadLevel("Levels/2.lvl")
 
 
 
@@ -340,8 +340,12 @@ while True:
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_t:
                                     paused = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    exit = True
+                    
                                     
-                if event.key == pygame.K_ESCAPE:
+                if event.key == pygame.K_Q:
                     pygame.quit() 
                 if event.key == pygame.K_LEFT:
                     rkt.go("left")
