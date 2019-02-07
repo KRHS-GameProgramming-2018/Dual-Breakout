@@ -102,6 +102,8 @@ while True:
                 if event.key == pygame.K_d:
                     rkt2.go("right") 
 
+                if event.key == pygame.K_RETURN:
+                    mode = "end"
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     rkt.stop("left")
@@ -177,3 +179,17 @@ while True:
         clock.tick(60)
         if dbgTime: print "\t Time after  Draw:", time.clock() - start  
             
+    endimage = pygame.image.load ("Screens/EndSplashScreen.png")
+    endrect = startimage.get_rect()
+    while mode == "end":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    mode = "start"
+        
+        screen.blit(endimage, endrect)
+        pygame.display.flip()
+        clock.tick(60)
