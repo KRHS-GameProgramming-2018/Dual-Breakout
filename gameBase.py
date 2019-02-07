@@ -333,10 +333,8 @@ while True:
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_t:
                                     paused = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    exit = True
-                    
+
+          
                                     
                 if event.key == pygame.K_Q:
                     pygame.quit() 
