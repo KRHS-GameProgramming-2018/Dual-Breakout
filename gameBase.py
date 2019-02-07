@@ -34,7 +34,7 @@ level= loadLevel("Levels/1.lvl")
 
 start = time.clock()
 
-mode = "start"
+mode = "start"s
 
 while True: 
     menuimage = pygame.image.load ("Screens/MainMenu.png")
