@@ -56,8 +56,9 @@ while True:
     while mode == "menu":
         for event in pygame.event.get():
             #print event.type
-            if event.type == pygame.QUIT:
-                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_e:
                     mode = "easy"
@@ -336,7 +337,7 @@ while True:
 
           
                                     
-                if event.key == pygame.K_q:
+                if event.key == pygame.K_Q:
                     pygame.quit() 
                 if event.key == pygame.K_LEFT:
                     rkt.go("left")
