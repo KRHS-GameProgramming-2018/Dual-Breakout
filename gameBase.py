@@ -27,7 +27,9 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-level= loadLevel("Levels/2.lvl")
+level1 = loadLevel ("Levels/1.lvl")
+level2 = loadLevel ("Levels/2.lvl")
+level3 = loadLevel ("Levels/3.lvl")
 
 
 
@@ -72,6 +74,7 @@ while True:
                     mode = "medium"
                 if event.key == pygame.K_h:
                     mode = "hard"
+                
         
         screen.blit(menuimage, menurect)
         pygame.display.flip()
@@ -103,7 +106,6 @@ while True:
     easyrect = easyimage.get_rect()
     
     
-    level= loadLevel("Levels/2.lvl")
 
     
     ###########MEDIUM######
@@ -159,7 +161,7 @@ while True:
         rktScore.update(rkt.score)
         rkt2Score.update(rkt2.score)
         
-        for block in level:
+        for block in level2:
             block.update()
             
         if dbgTime: print "\t Time after  update:", time.clock() - start  
@@ -172,7 +174,7 @@ while True:
             if ball.rktcollide(rkt2):
                 print "racket 2"
                 ball.owner = 2
-            for block in level:
+            for block in level2:
                 if ball.blockcollide(block):
                     if ball.owner == 1: 
                         rkt.score +=1
@@ -181,17 +183,17 @@ while True:
                 block.pbcollide(ball)
             if ball.rect.top <0 :
                 if rkt2.score >= 3:
-                    rkt2.score -= 3
+                    rkt2.score -= 1
             if ball.rect.bottom > height :
                 if rkt.score >= 3:
-                    rkt.score -=3
+                    rkt.score -= 1
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
             
-        for block in level:
+        for block in level2:
             if not block.living:
-                level.remove(block)
+                level2.remove(block)
         
     
         screen.blit(bgimage, bgrect)
@@ -205,7 +207,7 @@ while True:
         screen.blit(rkt.image, rkt.rect)
         screen.blit(rkt2.image, rkt2.rect)
         if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
-        for block in level:
+        for block in level2:
             screen.blit(block.image, block.rect)
         if dbgTime: print "\t\t Time blocks  Draw:", time.clock() - start  
         pygame.display.flip()
@@ -266,7 +268,7 @@ while True:
         rktScore.update(rkt.score)
         rkt2Score.update(rkt2.score)
         
-        for block in level:
+        for block in level1:
             block.update()
             
         if dbgTime: print "\t Time after  update:", time.clock() - start  
@@ -279,7 +281,7 @@ while True:
             if ball.rktcollide(rkt2):
                 print "racket 2"
                 ball.owner = 2
-            for block in level:
+            for block in level1:
                 if ball.blockcollide(block):
                     if ball.owner == 1: 
                         rkt.score +=1
@@ -288,17 +290,17 @@ while True:
                 block.pbcollide(ball)
             if ball.rect.top <0 :
                 if rkt2.score >= 3:
-                    rkt2.score -= 3
+                    rkt2.score -= 1
             if ball.rect.bottom > height :
                 if rkt.score >= 3:
-                    rkt.score -=3
+                    rkt.score -= 1
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
             
-        for block in level:
+        for block in level1:
             if not block.living:
-                level.remove(block)
+                level1.remove(block)
         
     
         screen.blit(easyimage, easyrect)
@@ -312,7 +314,7 @@ while True:
         screen.blit(rkt.image, rkt.rect)
         screen.blit(rkt2.image, rkt2.rect)
         if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
-        for block in level:
+        for block in level1:
             screen.blit(block.image, block.rect)
         if dbgTime: print "\t\t Time blocks  Draw:", time.clock() - start  
         pygame.display.flip()
@@ -374,8 +376,9 @@ while True:
         rktScore.update(rkt.score)
         rkt2Score.update(rkt2.score)
         
-        for block in level:
+        for block in level3:
             block.update()
+            
             
         if dbgTime: print "\t Time after  update:", time.clock() - start  
         
@@ -387,7 +390,7 @@ while True:
             if ball.rktcollide(rkt2):
                 print "racket 2"
                 ball.owner = 2
-            for block in level:
+            for block in level3:
                 if ball.blockcollide(block):
                     if ball.owner == 1: 
                         rkt.score +=1
@@ -396,17 +399,17 @@ while True:
                 block.pbcollide(ball)
             if ball.rect.top <0 :
                 if rkt2.score >= 3:
-                    rkt2.score -= 3
+                    rkt2.score -= 1
             if ball.rect.bottom > height :
                 if rkt.score >= 3:
-                    rkt.score -=3
+                    rkt.score -=1
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
             
-        for block in level:
+        for block in level3:
             if not block.living:
-                level.remove(block)
+                level3.remove(block)
         
     
         screen.blit(bgimage, bgrect)
@@ -420,7 +423,7 @@ while True:
         screen.blit(rkt.image, rkt.rect)
         screen.blit(rkt2.image, rkt2.rect)
         if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
-        for block in level:
+        for block in level3:
             screen.blit(block.image, block.rect)
         if dbgTime: print "\t\t Time blocks  Draw:", time.clock() - start  
         pygame.display.flip()
