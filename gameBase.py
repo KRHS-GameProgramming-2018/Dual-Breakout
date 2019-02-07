@@ -18,20 +18,11 @@ height = 950
 size = width, height
 
 
-
-
-
-
-
-
-
 screen = pygame.display.set_mode(size)
 
 level1 = loadLevel ("Levels/1.lvl")
 level2 = loadLevel ("Levels/2.lvl")
 level3 = loadLevel ("Levels/3.lvl")
-
-
 
 
 start = time.clock()
@@ -342,10 +333,8 @@ while True:
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_t:
                                     paused = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    exit = True
-                    
+
+          
                                     
                 if event.key == pygame.K_q:
                     pygame.quit() 
