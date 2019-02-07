@@ -347,7 +347,7 @@ while True:
                     exit = True
                     
                                     
-                if event.key == pygame.K_Q:
+                if event.key == pygame.K_q:
                     pygame.quit() 
                 if event.key == pygame.K_LEFT:
                     rkt.go("left")
