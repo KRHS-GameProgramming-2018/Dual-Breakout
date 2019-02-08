@@ -20,7 +20,7 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-level1 = loadLevel ("Levels/1.lvl")
+level = loadLevel ("Levels/1.lvl")
 level2 = loadLevel ("Levels/2.lvl")
 level3 = loadLevel ("Levels/3.lvl")
 
@@ -60,11 +60,20 @@ while True:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_e:
-                    mode = "easy"
+                    level = loadLevel ("Levels/1.lvl")
+                    bgimage = pygame.image.load("screens/backroundEasy.png")
+                    bgrect = bgimage.get_rect()
+                    mode = "game"
                 if event.key == pygame.K_m:
-                    mode = "medium"
+                    level = loadLevel ("Levels/2.lvl")
+                    bgimage = pygame.image.load("screens/backround1.png")
+                    bgrect = bgimage.get_rect()
+                    mode = "game"
                 if event.key == pygame.K_h:
-                    mode = "hard"
+                    level = loadLevel ("Levels/3.lvl")
+                    bgimage = pygame.image.load("screens/backround1.png")
+                    bgrect = bgimage.get_rect()
+                    mode = "game"
                 
         
         screen.blit(menuimage, menurect)
@@ -91,18 +100,18 @@ while True:
     rkt2= racket("Racket/racket.png", 15, [width/2, 10])
     rkt2Score = Score(0, [width-50, 25])
     
-    bgimage = pygame.image.load("screens/backround1.png")
-    bgrect = bgimage.get_rect()
+    # ~ bgimage = pygame.image.load("screens/backround1.png")
+    # ~ bgrect = bgimage.get_rect()
     easyimage = pygame.image.load ("screens/backroundEasy.png")
     easyrect = easyimage.get_rect()
     
     
 
     
-    ###########MEDIUM######
+    ###########GAME######
     
     
-    while mode == "medium":
+    while mode == "game":
         if dbgTime: print "\nLoopTine:", time.clock() - start
         start = time.clock()
         for event in pygame.event.get():
@@ -152,7 +161,7 @@ while True:
         rktScore.update(rkt.score)
         rkt2Score.update(rkt2.score)
         
-        for block in level2:
+        for block in level:
             block.update()
             
         if dbgTime: print "\t Time after  update:", time.clock() - start  
@@ -182,9 +191,9 @@ while True:
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
             
-        for block in level2:
+        for block in level:
             if not block.living:
-                level2.remove(block)
+                level.remove(block)
         
     
         screen.blit(bgimage, bgrect)
@@ -198,7 +207,7 @@ while True:
         screen.blit(rkt.image, rkt.rect)
         screen.blit(rkt2.image, rkt2.rect)
         if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
-        for block in level2:
+        for block in level:
             screen.blit(block.image, block.rect)
         if dbgTime: print "\t\t Time blocks  Draw:", time.clock() - start  
         pygame.display.flip()
@@ -206,219 +215,4 @@ while True:
         if dbgTime: print "\t Time after  Draw:", time.clock() - start  
         
         
-    ################EASY##########    
-        
-        
-    while mode == "easy":
-        if dbgTime: print "\nLoopTine:", time.clock() - start
-        start = time.clock()
-        for event in pygame.event.get():
-            #print event.type
-            if event.type == pygame.QUIT:
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_t:
-                    paused = True
-                    while paused:
-                        for event in pygame.event.get():
-                            if event.type == pygame.QUIT: sys.exit()
-                            if event.type == pygame.KEYDOWN:
-                                if event.key == pygame.K_t:
-                                    paused = False
-                                    
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit() 
-                if event.key == pygame.K_LEFT:
-                    rkt.go("left")
-                if event.key == pygame.K_a:
-                    rkt2.go("left")
-                if event.key == pygame.K_RIGHT:                 
-                    rkt.go("right")
-                if event.key == pygame.K_d:
-                    rkt2.go("right") 
-
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT:
-                    rkt.stop("left")
-                if event.key == pygame.K_a:
-                    rkt2.stop("left")
-                if event.key == pygame.K_RIGHT:                 
-                    rkt.stop("right")
-                if event.key == pygame.K_d:
-                    rkt2.stop("right") 
-        if dbgTime: print "\t Time after event:", time.clock() - start  
-        
-        
     
-
-
-        #print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
-        rkt.update(size)
-        rkt2.update(size)
-        
-        rktScore.update(rkt.score)
-        rkt2Score.update(rkt2.score)
-        
-        for block in level1:
-            block.update()
-            
-        if dbgTime: print "\t Time after  update:", time.clock() - start  
-        
-        for ball in balls:
-            ball.update(size)
-            if ball.rktcollide(rkt):
-                print "racket 1"
-                ball.owner = 1
-            if ball.rktcollide(rkt2):
-                print "racket 2"
-                ball.owner = 2
-            for block in level1:
-                if ball.blockcollide(block):
-                    if ball.owner == 1: 
-                        rkt.score +=1
-                    elif ball.owner == 2:
-                        rkt2.score +=1
-                block.pbcollide(ball)
-            if ball.rect.top <0 :
-                if rkt2.score >= 3:
-                    rkt2.score -= 1
-            if ball.rect.bottom > height :
-                if rkt.score >= 3:
-                    rkt.score -= 1
-                
-        if dbgTime: print "\t Time after  collide:", time.clock() - start  
-            
-            
-        for block in level1:
-            if not block.living:
-                level1.remove(block)
-        
-    
-        screen.blit(easyimage, easyrect)
-        if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
-        screen.blit(rktScore.image, rktScore.rect)
-        screen.blit(rkt2Score.image, rkt2Score.rect)
-        if dbgTime: print "\t\t Time score  Draw:", time.clock() - start  
-        for ball in balls:
-            screen.blit(ball.image, ball.rect)
-            print "\t\t Time balls  Draw:", time.clock() - start  
-        screen.blit(rkt.image, rkt.rect)
-        screen.blit(rkt2.image, rkt2.rect)
-        if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
-        for block in level1:
-            screen.blit(block.image, block.rect)
-        if dbgTime: print "\t\t Time blocks  Draw:", time.clock() - start  
-        pygame.display.flip()
-        clock.tick(60)
-        if dbgTime: print "\t Time after  Draw:", time.clock() - start
- 
- 
- 
- ###########HARD########
-        
-        
-    while mode == "hard":
-        if dbgTime: print "\nLoopTine:", time.clock() - start
-        start = time.clock()
-        for event in pygame.event.get():
-            #print event.type
-            if event.type == pygame.QUIT:
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_t:
-                    paused = True
-                    while paused:
-                        for event in pygame.event.get():
-                            if event.type == pygame.QUIT: sys.exit()
-                            if event.type == pygame.KEYDOWN:
-                                if event.key == pygame.K_t:
-                                    paused = False
-
-          
-                                    
-                if event.key == pygame.K_q:
-                    pygame.quit() 
-                if event.key == pygame.K_LEFT:
-                    rkt.go("left")
-                if event.key == pygame.K_a:
-                    rkt2.go("left")
-                if event.key == pygame.K_RIGHT:                 
-                    rkt.go("right")
-                if event.key == pygame.K_d:
-                    rkt2.go("right") 
-
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT:
-                    rkt.stop("left")
-                if event.key == pygame.K_a:
-                    rkt2.stop("left")
-                if event.key == pygame.K_RIGHT:                 
-                    rkt.stop("right")
-                if event.key == pygame.K_d:
-                    rkt2.stop("right") 
-        if dbgTime: print "\t Time after event:", time.clock() - start  
-        
-        
-    
-
-
-        #print ("Score: Player 1 - " + str(rkt.score) + " Player 2 - " + str(rkt2.score))
-        rkt.update(size)
-        rkt2.update(size)
-        
-        rktScore.update(rkt.score)
-        rkt2Score.update(rkt2.score)
-        
-        for block in level3:
-            block.update()
-            
-            
-        if dbgTime: print "\t Time after  update:", time.clock() - start  
-        
-        for ball in balls:
-            ball.update(size)
-            if ball.rktcollide(rkt):
-                print "racket 1"
-                ball.owner = 1
-            if ball.rktcollide(rkt2):
-                print "racket 2"
-                ball.owner = 2
-            for block in level3:
-                if ball.blockcollide(block):
-                    if ball.owner == 1: 
-                        rkt.score +=1
-                    elif ball.owner == 2:
-                        rkt2.score +=1
-                block.pbcollide(ball)
-            if ball.rect.top <0 :
-                if rkt2.score >= 3:
-                    rkt2.score -= 1
-            if ball.rect.bottom > height :
-                if rkt.score >= 3:
-                    rkt.score -=1
-                
-        if dbgTime: print "\t Time after  collide:", time.clock() - start  
-            
-            
-        for block in level3:
-            if not block.living:
-                level3.remove(block)
-        
-    
-        screen.blit(bgimage, bgrect)
-        if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
-        screen.blit(rktScore.image, rktScore.rect)
-        screen.blit(rkt2Score.image, rkt2Score.rect)
-        if dbgTime: print "\t\t Time score  Draw:", time.clock() - start  
-        for ball in balls:
-            screen.blit(ball.image, ball.rect)
-            print "\t\t Time balls  Draw:", time.clock() - start  
-        screen.blit(rkt.image, rkt.rect)
-        screen.blit(rkt2.image, rkt2.rect)
-        if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
-        for block in level3:
-            screen.blit(block.image, block.rect)
-        if dbgTime: print "\t\t Time blocks  Draw:", time.clock() - start  
-        pygame.display.flip()
-        clock.tick(60)
-        if dbgTime: print "\t Time after  Draw:", time.clock() - start
