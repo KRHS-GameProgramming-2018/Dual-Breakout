@@ -20,9 +20,9 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-level = loadLevel ("Levels/1.lvl")
-level2 = loadLevel ("Levels/2.lvl")
-level3 = loadLevel ("Levels/3.lvl")
+# ~ level = loadLevel ("Levels/1.lvl")
+# ~ level = loadLevel ("Levels/2.lvl")
+# ~ level = loadLevel ("Levels/3.lvl")
 
 
 start = time.clock()
@@ -99,12 +99,7 @@ while True:
     rktScore = Score(0, [50, height-25])
     rkt2= racket("Racket/racket.png", 15, [width/2, 10])
     rkt2Score = Score(0, [width-50, 25])
-    
-    # ~ bgimage = pygame.image.load("screens/backround1.png")
-    # ~ bgrect = bgimage.get_rect()
-    easyimage = pygame.image.load ("screens/backroundEasy.png")
-    easyrect = easyimage.get_rect()
-    
+
     
 
     
@@ -174,7 +169,7 @@ while True:
             if ball.rktcollide(rkt2):
                 print "racket 2"
                 ball.owner = 2
-            for block in level2:
+            for block in level:
                 if ball.blockcollide(block):
                     if ball.owner == 1: 
                         rkt.score +=1
@@ -213,6 +208,6 @@ while True:
         pygame.display.flip()
         clock.tick(60)
         if dbgTime: print "\t Time after  Draw:", time.clock() - start  
-        
-        
-    
+
+
+ 
