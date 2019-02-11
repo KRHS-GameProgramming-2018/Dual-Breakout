@@ -41,6 +41,10 @@ class BlackBlock():
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
     
     def update(self):
+        if self.hp == 2:
+            self.image = self.images[1]
+        if self.hp == 1:
+            self.image = self.images[2]
         if self.hp <= 0:
             if self.dying:
                 if self.frameTimer < self.frameTimerMax :
