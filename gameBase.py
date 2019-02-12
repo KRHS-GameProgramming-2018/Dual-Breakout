@@ -5,6 +5,7 @@ from Score import *
 from LevelLoad import *
 from Block import *
 from BlackBlock import *
+from Button import *
 pygame.init()
 
 dbgTime = True
@@ -74,6 +75,25 @@ while True:
                     bgimage = pygame.image.load("screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
+                    
+                    
+    while mode == "start":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    startButton.checkHover(event.pos)
+                else:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print event.button
+                if event.button == 1:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if startButton.collidePt(event.pos):
+                    mode = "menu"
                 
         
         screen.blit(menuimage, menurect)
