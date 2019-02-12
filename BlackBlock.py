@@ -18,7 +18,7 @@ class BlackBlock():
         self.image = self.images[self.frame]  
         self.frameMax = len(self.images) -1 
         self.frameTimer = 0
-        self.frameTimerMax = 60/3/len(self.images)
+        self.frameTimerMax = 60/2/len(self.images)
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         
