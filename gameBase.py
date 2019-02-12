@@ -20,11 +20,6 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-# ~ level = loadLevel ("Levels/1.lvl")
-# ~ level = loadLevel ("Levels/2.lvl")
-# ~ level = loadLevel ("Levels/3.lvl")
-
-
 start = time.clock()
 
 mode = "start"
@@ -171,17 +166,11 @@ while True:
                 ball.owner = 2
             for block in level:
                 if ball.blockcollide(block):
-                    if ball.owner == 1: 
+                    if ball.owner == 1:
                         rkt.score +=1
                     elif ball.owner == 2:
                         rkt2.score +=1
                 block.pbcollide(ball)
-            if ball.rect.top <0 :
-                if rkt2.score >= 3:
-                    rkt2.score -= 1
-            if ball.rect.bottom > height :
-                if rkt.score >= 3:
-                    rkt.score -= 1
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
@@ -190,6 +179,13 @@ while True:
             if not block.living:
                 level.remove(block)
         
+        # ~ if rktScore > rkt2Score:
+            # ~ if block in level < str(rkt.score) - str(rkt2.score):
+                # ~ mode = "end"
+            
+        # ~ if rkt2Score > rktScore:
+            # ~ if block in level < str(rkt2.score) - str(rkt.score):
+                # ~ mode = "end"
     
         screen.blit(bgimage, bgrect)
         if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
@@ -211,3 +207,17 @@ while True:
 
 
  
+    endimage = pygame.image.load ("Screens/EndSplashScreen.png")
+    endrect = startimage.get_rect()
+    while mode == "end":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    mode = "start"
+        
+        screen.blit(endimage, endrect)
+        pygame.display.flip()
+        clock.tick(60)
