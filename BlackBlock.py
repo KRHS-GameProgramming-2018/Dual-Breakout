@@ -6,10 +6,11 @@ class BlackBlock():
                        pygame.image.load("Blocks/Black/black2.png"),
                        pygame.image.load("Blocks/Black/black3.png"),
                        pygame.image.load("Blocks/Black/blackAni1.png"),
+                       pygame.image.load("Blocks/Black/blackAni1.png"),
+                       pygame.image.load("Blocks/Black/blackAni2.png"),
                        pygame.image.load("Blocks/Black/blackAni2.png"),
                        pygame.image.load("Blocks/Black/blackAni3.png"),
-                       pygame.image.load("Blocks/Black/black1.png"),
-                       ]
+                       pygame.image.load("Blocks/Black/blackAni3.png"),]
         self.hp = 3
         
         self.living = True
