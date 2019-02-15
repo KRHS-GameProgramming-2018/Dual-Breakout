@@ -5,6 +5,7 @@ from Score import *
 from LevelLoad import *
 from Block import *
 from BlackBlock import *
+from Button import *
 pygame.init()
 
 dbgTime = True
@@ -30,6 +31,13 @@ while True:
     startimage = pygame.image.load ("Screens/backroundStartScreen.png")
     startrect = startimage.get_rect()
     
+    
+    easyButton = Button("easy", [width/2, 420])
+    mediumButton = Button("medium", [width/2, 530])
+    hardButton = Button("hard", [width/2, 640])
+    
+    
+    
     ###########START####
     
     while mode == "start":
@@ -53,25 +61,48 @@ while True:
             #print event.type
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_e:
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    easyButton.checkHover(event.pos)
+                    mediumButton.checkHover(event.pos)
+                    hardButton.checkHover(event.pos)
+                else:
+                    easyButton.checkClick(event.pos)
+                    mediumButton.checkClick(event.pos)
+                    hardButton.checkClick(event.pos)
+                    
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print event.button
+                if event.button == 1:
+                    easyButton.checkClick(event.pos)
+                    mediumButton.checkClick(event.pos)
+                    hardButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if easyButton.collidePt(event.pos):
                     level = loadLevel ("Levels/1.lvl")
                     bgimage = pygame.image.load("screens/backroundEasy.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
-                if event.key == pygame.K_m:
+                if mediumButton.collidePt(event.pos):
                     level = loadLevel ("Levels/2.lvl")
                     bgimage = pygame.image.load("screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
-                if event.key == pygame.K_h:
+                if hardButton.collidePt(event.pos):
                     level = loadLevel ("Levels/3.lvl")
                     bgimage = pygame.image.load("screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
                 
+        # ~ screen.blit(easyButton.image, easyButton.rect)
+        # ~ screen.blit(mediumButton.image, mediumButton.rect)
+        # ~ screen.blit(hardButton.image, hardButton.rect)
         
         screen.blit(menuimage, menurect)
+        screen.blit(easyButton.image, easyButton.rect)
+        screen.blit(mediumButton.image, mediumButton.rect)
+        screen.blit(hardButton.image, hardButton.rect)
+        
         pygame.display.flip()
         clock.tick(60)
     
@@ -184,7 +215,7 @@ while True:
                 # ~ mode = "end"
             
         # ~ if rkt2Score > rktScore:
-            # ~ if block in level < str(rkt2.score) - str(rkt.score):
+            # ~ if block in level < str(rkt2.score) - str(rkt.score)
                 # ~ mode = "end"
     
         screen.blit(bgimage, bgrect)
