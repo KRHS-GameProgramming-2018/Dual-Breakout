@@ -93,6 +93,25 @@ while True:
                     bgimage = pygame.image.load("screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
+                    
+                    
+    while mode == "start":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    startButton.checkHover(event.pos)
+                else:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print event.button
+                if event.button == 1:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if startButton.collidePt(event.pos):
+                    mode = "menu"
                 
         # ~ screen.blit(easyButton.image, easyButton.rect)
         # ~ screen.blit(mediumButton.image, mediumButton.rect)
@@ -238,3 +257,17 @@ while True:
 
 
  
+    endimage = pygame.image.load ("Screens/EndSplashScreen.png")
+    endrect = startimage.get_rect()
+    while mode == "end":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    mode = "start"
+        
+        screen.blit(endimage, endrect)
+        pygame.display.flip()
+        clock.tick(60)
