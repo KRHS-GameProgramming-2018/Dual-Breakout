@@ -94,28 +94,7 @@ while True:
                     bgrect = bgimage.get_rect()
                     mode = "game"
                     
-                    
-    while mode == "start":
-        for event in pygame.event.get():
-            #print event.type
-            if event.type == pygame.QUIT:
-                sys.exit()
-            if event.type == pygame.MOUSEMOTION:
-                if event.buttons[0] == 0:
-                    startButton.checkHover(event.pos)
-                else:
-                    startButton.checkClick(event.pos)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print event.button
-                if event.button == 1:
-                    startButton.checkClick(event.pos)
-            if event.type == pygame.MOUSEBUTTONUP:
-                if startButton.collidePt(event.pos):
-                    mode = "menu"
-                
-        # ~ screen.blit(easyButton.image, easyButton.rect)
-        # ~ screen.blit(mediumButton.image, mediumButton.rect)
-        # ~ screen.blit(hardButton.image, hardButton.rect)
+            
         
         screen.blit(menuimage, menurect)
         screen.blit(easyButton.image, easyButton.rect)
@@ -163,7 +142,8 @@ while True:
                     paused = True
                     while paused:
                         for event in pygame.event.get():
-                            if event.type == pygame.QUIT: sys.exit()
+                            if event.type == pygame.QUIT:
+                                 sys.exit()
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_t:
                                     paused = False
@@ -255,7 +235,7 @@ while True:
         clock.tick(60)
         if dbgTime: print "\t Time after  Draw:", time.clock() - start  
 
-
+################END################
  
     endimage = pygame.image.load ("Screens/EndSplashScreen.png")
     endrect = startimage.get_rect()

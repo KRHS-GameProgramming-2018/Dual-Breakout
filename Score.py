@@ -1,4 +1,4 @@
-import pygame, sys, math, random
+import pygame, sys, math, random, time
 
 class Score():
     def __init__(self,  score=0, pos=[0,0]):

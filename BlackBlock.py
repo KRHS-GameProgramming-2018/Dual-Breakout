@@ -12,7 +12,6 @@ class BlackBlock():
                        pygame.image.load("Blocks/Black/blackAni3.png"),
                        pygame.image.load("Blocks/Black/blackAni3.png"),]
         self.hp = 3
-        
         self.living = True
         self.dying = True
         self.frame = 0 
