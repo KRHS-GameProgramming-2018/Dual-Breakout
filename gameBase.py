@@ -148,7 +148,7 @@ while True:
                                 if event.key == pygame.K_t:
                                     paused = False
                                     
-                if event.key == pygame.K_ESCAPE:
+
                     pygame.quit() 
                 if event.key == pygame.K_LEFT:
                     rkt.go("left")
