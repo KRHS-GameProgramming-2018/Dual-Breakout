@@ -148,8 +148,8 @@ while True:
                                 if event.key == pygame.K_t:
                                     paused = False
                                     
-
-                    pygame.quit() 
+                if event.key == pygame.K_q:
+                    sys.exit()
                 if event.key == pygame.K_LEFT:
                     rkt.go("left")
                 if event.key == pygame.K_a:
@@ -204,12 +204,12 @@ while True:
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
-            
+             
         for block in level:
             if not block.living:
                 level.remove(block)
                 
-        if len(blocks) < abs(rkt.score - rkt2.score):
+        if len(level) < abs(rkt.score - rkt2.score):
             mode = "end"
     
         screen.blit(bgimage, bgrect)
