@@ -32,10 +32,10 @@ class Ball():
         
         self.living = True
         self.dying = False
-        self.frame = 0 
-        self.frameMax = len(self.images) -1 
-        self.frameTimer = 0
-        self.frameTimerMax = 60/6/len(self.images)
+       # self.frame = 0 
+        #self.frameMax = len(self.images) -1 
+        #self.frameTimer = 0
+        #self.frameTimerMax = 60/6/len(self.images)
         
         self.startPos = startPos
         self.startSpeed = speed
