@@ -137,11 +137,7 @@ while True:
     rkt2= racket("Racket/racket.png", 15, [width/2, 10])
     rkt2Score = Score(0, [width-50, 25])
 
-    
-       
-        
 
-    
     ###########GAME######
     
     
@@ -163,8 +159,8 @@ while True:
                                 if event.key == pygame.K_t:
                                     paused = False
                                     
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit() 
+                if event.key == pygame.K_q:
+                    sys.exit()
                 if event.key == pygame.K_LEFT:
                     rkt.go("left")
                 if event.key == pygame.K_a:
@@ -229,11 +225,12 @@ while True:
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
-            
+             
         for block in level:
             if not block.living:
                 level.remove(block)
-        
+
+        """
         if rkt.score > rkt2.score:
             if len(level) < (rkt.score - rkt2.score):
                 mode = "p1win"
@@ -241,10 +238,13 @@ while True:
         if rkt2.score > rkt.score:
             if len(level) < (rkt2.score - rkt.score):
                 mode = "p2win"
-        
+        """
             
-    
-    
+
+        if len(level) < abs(rkt.score - rkt2.score):
+            mode = "end"
+
+
         screen.blit(bgimage, bgrect)
         if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
         screen.blit(rktScore.image, rktScore.rect)
