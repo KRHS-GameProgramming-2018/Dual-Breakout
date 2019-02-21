@@ -23,6 +23,9 @@ screen = pygame.display.set_mode(size)
 
 start = time.clock()
 
+if len(balls) > 2:
+            len(balls) - 2 
+            
 mode = "start"
 
 while True: 
@@ -35,6 +38,9 @@ while True:
     easyButton = Button("easy", [width/2, 420])
     mediumButton = Button("medium", [width/2, 530])
     hardButton = Button("hard", [width/2, 640])
+    quitButton = Button("quit", [1126, 708])
+    noButton = Button("no", [900, 650])
+    yesButton = Button("yes", [300, 650])
     
     
     
@@ -66,10 +72,12 @@ while True:
                     easyButton.checkHover(event.pos)
                     mediumButton.checkHover(event.pos)
                     hardButton.checkHover(event.pos)
+                    quitButton.checkHover(event.pos)
                 else:
                     easyButton.checkClick(event.pos)
                     mediumButton.checkClick(event.pos)
                     hardButton.checkClick(event.pos)
+                    quitButton.checkClick(event.pos)
                     
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print event.button
@@ -77,6 +85,7 @@ while True:
                     easyButton.checkClick(event.pos)
                     mediumButton.checkClick(event.pos)
                     hardButton.checkClick(event.pos)
+                    quitButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if easyButton.collidePt(event.pos):
                     level = loadLevel ("Levels/1.lvl")
@@ -94,12 +103,16 @@ while True:
                     bgrect = bgimage.get_rect()
                     mode = "game"
                     
+                if quitButton.collidePt(event.pos):
+                    mode = "ays"
+                    
             
         
         screen.blit(menuimage, menurect)
         screen.blit(easyButton.image, easyButton.rect)
         screen.blit(mediumButton.image, mediumButton.rect)
         screen.blit(hardButton.image, hardButton.rect)
+        screen.blit(quitButton.image, quitButton.rect)
         
         pygame.display.flip()
         clock.tick(60)
@@ -125,6 +138,8 @@ while True:
     rkt2Score = Score(0, [width-50, 25])
 
     
+       
+        
 
     
     ###########GAME######
@@ -184,6 +199,9 @@ while True:
         for block in level:
             block.update()
             
+        for blackblock in level:
+            blackblock.update()
+            
         if dbgTime: print "\t Time after  update:", time.clock() - start  
         
         for ball in balls:
@@ -201,6 +219,13 @@ while True:
                     elif ball.owner == 2:
                         rkt2.score +=1
                 block.pbcollide(ball)
+            for blackblock in level: 
+                if ball.blockcollide(block):
+                        if ball.owner == 1:
+                            rkt.score +=2
+                        elif ball.owner == 2:
+                            rkt2.score +=2
+                blackblock.pbcollide(ball)
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
@@ -208,9 +233,17 @@ while True:
         for block in level:
             if not block.living:
                 level.remove(block)
+        
+        if rkt.score > rkt2.score:
+            if len(level) < (rkt.score - rkt2.score):
+                mode = "p1win"
                 
-        if len(blocks) < abs(rkt.score - rkt2.score):
-            mode = "end"
+        if rkt2.score > rkt.score:
+            if len(level) < (rkt2.score - rkt.score):
+                mode = "p2win"
+        
+            
+    
     
         screen.blit(bgimage, bgrect)
         if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
@@ -233,7 +266,7 @@ while True:
 ################END################
  
     endimage = pygame.image.load ("Screens/EndSplashScreen.png")
-    endrect = startimage.get_rect()
+    endrect = endimage.get_rect()
     while mode == "end":
         for event in pygame.event.get():
             #print event.type
@@ -246,3 +279,75 @@ while True:
         screen.blit(endimage, endrect)
         pygame.display.flip()
         clock.tick(60)
+        
+        
+        
+#########AREYOUSURE######
+
+
+
+    sureimage = pygame.image.load ("Screens/areYouSure.png")
+    surerect = sureimage.get_rect()
+    while mode == "ays":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    yesButton.checkHover(event.pos)
+                    noButton.checkHover(event.pos)
+                else:
+                    yesButton.checkClick(event.pos)
+                    noButton.checkClick(event.pos)
+                    
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print event.button
+                if event.button == 1:
+                    yesButton.checkClick(event.pos)
+                    noButton.checkClick(event.pos)   
+                         
+            if event.type == pygame.MOUSEBUTTONUP:
+                if yesButton.collidePt(event.pos):
+                    mode = "quit"
+                    
+                if noButton.collidePt(event.pos):
+                    mode = "menu"
+                        
+                        
+        screen.blit(sureimage, surerect)
+        screen.blit(yesButton.image, yesButton.rect)
+        screen.blit(noButton.image, noButton.rect)
+        pygame.display.flip()
+        clock.tick(60)
+        
+##########QUIT########
+
+
+    while mode == "quit":
+        sys.exit()
+
+
+
+
+
+########Player 1 Wins######
+
+    # ~ endimage = pygame.image.load ("Screens/EndSplashScreen.png")
+    # ~ endrect = endimage.get_rect()
+    # ~ while mode == "p1win":
+        # ~ for event in pygame.event.get():
+            # ~ #print event.type
+            # ~ if event.type == pygame.QUIT:
+                # ~ sys.exit()
+            # ~ if event.type == pygame.KEYDOWN:
+                # ~ if event.key == pygame.K_RETURN:
+                    # ~ mode = "start"
+        
+        # ~ screen.blit(endimage, endrect)
+        # ~ pygame.display.flip()
+        # ~ clock.tick(60)
+
+
+
+

@@ -14,6 +14,18 @@ class Button():
             self.basicImage = pygame.image.load("Buttons/hardBasic.png")
             self.hoverImage = pygame.image.load("Buttons/hardHover.png")
             self.clickImage = pygame.image.load("Buttons/hardClick.png")
+        if kind == "quit":
+            self.basicImage = pygame.image.load("Buttons/quitBasic.png")
+            self.hoverImage = pygame.image.load("Buttons/quitHover.png")
+            self.clickImage = pygame.image.load("Buttons/quitClick.png")
+        if kind == "yes":
+            self.basicImage = pygame.image.load("Buttons/yesBasic.png")
+            self.hoverImage = pygame.image.load("Buttons/yesHover.png")
+            self.clickImage = pygame.image.load("Buttons/yesClick.png")
+        if kind == "no":
+            self.basicImage = pygame.image.load("Buttons/noBasic.png")
+            self.hoverImage = pygame.image.load("Buttons/noHover.png")
+            self.clickImage = pygame.image.load("Buttons/noClick.png")
             
             
         self.image = self.basicImage
