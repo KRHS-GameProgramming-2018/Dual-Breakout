@@ -39,7 +39,7 @@ while True:
     mediumButton = Button("medium", [width/2, 530])
     hardButton = Button("hard", [width/2, 640])
     quitButton = Button("quit", [1126, 708])
-    noButton = Button("no", [900, 650])
+    noButton = Button("no", [900, 650])  
     yesButton = Button("yes", [300, 650])
     
     
