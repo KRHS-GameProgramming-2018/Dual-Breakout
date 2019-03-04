@@ -39,7 +39,7 @@ while True:
     mediumButton = Button("medium", [width/2, 530])
     hardButton = Button("hard", [width/2, 640])
     quitButton = Button("quit", [1126, 708])
-    noButton = Button("no", [900, 650])  
+    noButton = Button("no", [900, 650])
     yesButton = Button("yes", [300, 650])
     
     
@@ -230,8 +230,6 @@ while True:
             if not block.living:
                 level.remove(block)
 
-
-
         if len(level) < abs(rkt.score - rkt2.score):
             mode = "end"
 
@@ -253,10 +251,8 @@ while True:
         """
             
 
-
         if len(level) < abs(rkt.score - rkt2.score):
             mode = "end"
-
 
         screen.blit(bgimage, bgrect)
         if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
