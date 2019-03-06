@@ -23,8 +23,6 @@ screen = pygame.display.set_mode(size)
 
 start = time.clock()
 
-if len(balls) > 2:
-            len(balls) - 2 
             
 mode = "start"
 
@@ -41,7 +39,8 @@ while True:
     quitButton = Button("quit", [1126, 708])
     noButton = Button("no", [900, 650])
     yesButton = Button("yes", [300, 650])
-    
+    quitwinButton = Button("wquit", [900, 625])
+    menuButton = Button("menu", [300, 625])
     
     
     ###########START####
@@ -231,7 +230,7 @@ while True:
                 level.remove(block)
 
 
-        """
+        
         if rkt.score > rkt2.score:
             if len(level) < (rkt.score - rkt2.score):
                 mode = "p1win"
@@ -239,11 +238,7 @@ while True:
         if rkt2.score > rkt.score:
             if len(level) < (rkt2.score - rkt.score):
                 mode = "p2win"
-        """
-            
 
-        if len(level) < abs(rkt.score - rkt2.score):
-            mode = "end"
 
         
         screen.blit(bgimage, bgrect)
@@ -329,26 +324,78 @@ while True:
         sys.exit()
 
 
-
-
-
 ########Player 1 Wins######
 
-    # ~ endimage = pygame.image.load ("Screens/EndSplashScreen.png")
-    # ~ endrect = endimage.get_rect()
-    # ~ while mode == "p1win":
-        # ~ for event in pygame.event.get():
-            # ~ #print event.type
-            # ~ if event.type == pygame.QUIT:
-                # ~ sys.exit()
-            # ~ if event.type == pygame.KEYDOWN:
-                # ~ if event.key == pygame.K_RETURN:
-                    # ~ mode = "start"
+    endimage = pygame.image.load ("Screens/p1Win.png")
+    endrect = endimage.get_rect()
+    while mode == "p1win":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    quitwinButton.checkHover(event.pos)
+                    menuButton.checkHover(event.pos)
+                else:
+                    quitwinButton.checkClick(event.pos)
+                    menuButton.checkClick(event.pos)
+                    
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print event.button
+                if event.button == 1:
+                    quitwinButton.checkClick(event.pos)
+                    menuButton.checkClick(event.pos)   
+                         
+            if event.type == pygame.MOUSEBUTTONUP:
+                if quitwinButton.collidePt(event.pos):
+                    mode = "quit"
+                    
+                if menuButton.collidePt(event.pos):
+                    mode = "menu"
+                        
         
-        # ~ screen.blit(endimage, endrect)
-        # ~ pygame.display.flip()
-        # ~ clock.tick(60)
+        screen.blit(endimage, endrect)
+        screen.blit(quitwinButton.image, quitwinButton.rect)
+        screen.blit(menuButton.image, menuButton.rect)
+        pygame.display.flip()
+        clock.tick(60)
+        
+        
+#########Player 2 Wins########
 
+    endimage = pygame.image.load ("Screens/p2Win.png")
+    endrect = endimage.get_rect()
+    while mode == "p2win":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    quitwinButton.checkHover(event.pos)
+                    menuButton.checkHover(event.pos)
+                else:
+                    quitwinButton.checkClick(event.pos)
+                    menuButton.checkClick(event.pos)
+                    
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print event.button
+                if event.button == 1:
+                    quitwinButton.checkClick(event.pos)
+                    menuButton.checkClick(event.pos)   
+                         
+            if event.type == pygame.MOUSEBUTTONUP:
+                if quitwinButton.collidePt(event.pos):
+                    mode = "quit"
+                    
+                if menuButton.collidePt(event.pos):
+                    mode = "menu"
+                        
+        
+        screen.blit(endimage, endrect)
+        screen.blit(quitwinButton.image, quitwinButton.rect)
+        screen.blit(menuButton.image, menuButton.rect)
+        pygame.display.flip()
+        clock.tick(60)
 
 
 
