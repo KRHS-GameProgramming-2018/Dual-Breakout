@@ -26,6 +26,14 @@ class Button():
             self.basicImage = pygame.image.load("Buttons/noBasic.png")
             self.hoverImage = pygame.image.load("Buttons/noHover.png")
             self.clickImage = pygame.image.load("Buttons/noClick.png")
+        if kind == "menu":
+            self.basicImage = pygame.image.load("Buttons/menuBasic.png")
+            self.hoverImage = pygame.image.load("Buttons/menuHover.png")
+            self.clickImage = pygame.image.load("Buttons/menuClick.png")
+        if kind == "wquit":
+            self.basicImage = pygame.image.load("Buttons/wquitBasic.png")
+            self.hoverImage = pygame.image.load("Buttons/wquitHover.png")
+            self.clickImage = pygame.image.load("Buttons/wquitClick.png")
             
             
         self.image = self.basicImage
