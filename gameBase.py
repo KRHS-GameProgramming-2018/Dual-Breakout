@@ -229,6 +229,15 @@ while True:
             if not block.living:
                 level.remove(block)
 
+        if len(level) < abs(rkt.score - rkt2.score):
+            mode = "end"
+
+        if len(level) < abs(rkt.score - rkt2.score):
+            mode = "end"
+
+        #if len(blocks) < abs(rkt.score - rkt2.score):
+            #mode = "end"
+
 
         
         if rkt.score > rkt2.score:
@@ -240,7 +249,6 @@ while True:
                 mode = "p2win"
 
 
-        
         screen.blit(bgimage, bgrect)
         if dbgTime: print "\t\t Time background  Draw:", time.clock() - start  
         screen.blit(rktScore.image, rktScore.rect)
