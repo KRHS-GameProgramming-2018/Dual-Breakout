@@ -19,7 +19,7 @@ height = 950
 size = width, height
 
 
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(size)d
 
 start = time.clock()
 
@@ -228,16 +228,6 @@ while True:
         for block in level:
             if not block.living:
                 level.remove(block)
-
-        if len(level) < abs(rkt.score - rkt2.score):
-            mode = "end"
-
-        if len(level) < abs(rkt.score - rkt2.score):
-            mode = "end"
-
-        #if len(blocks) < abs(rkt.score - rkt2.score):
-            #mode = "end"
-
 
         
         if rkt.score > rkt2.score:
