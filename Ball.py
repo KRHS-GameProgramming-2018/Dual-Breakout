@@ -135,7 +135,7 @@ class Ball():
         return False
 
     def blockcollide(self, other):
-        #if not other.dying:
+        if not other.dying:
             if self.rect.right > other.rect.left:
                 if self.rect.left < other.rect.right:
                     if self.rect.top < other.rect.bottom:
