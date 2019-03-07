@@ -229,16 +229,6 @@ while True:
             if not block.living:
                 level.remove(block)
 
-        if len(level) < abs(rkt.score - rkt2.score):
-            mode = "end"
-
-        if len(level) < abs(rkt.score - rkt2.score):
-            mode = "end"
-
-        #if len(blocks) < abs(rkt.score - rkt2.score):
-            #mode = "end"
-
-
         
         if rkt.score > rkt2.score:
             if len(level) < (rkt.score - rkt2.score):
