@@ -11,9 +11,9 @@ class BlackBlock():
                        pygame.image.load("Blocks/Black/blackAni2.png"),
                        pygame.image.load("Blocks/Black/blackAni3.png"),
                        pygame.image.load("Blocks/Black/blackAni3.png"),]
-        self.hp = 4
+        self.hp = 3
         self.living = True
-        self.dying = True
+        self.dying = False
         self.frame = 0 
         self.image = self.images[self.frame]  
         self.frameMax = len(self.images) -1 
@@ -29,7 +29,7 @@ class BlackBlock():
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
                         if self.radius+other.radius > self.getDist(other.rect.center):
-                            self.hp -= 1
+                            self.hp = self.hp - 1
                             self.frame +=1
                             print "ouch"
               
@@ -46,6 +46,7 @@ class BlackBlock():
         if self.hp == 1:
             self.image = self.images[2]
         if self.hp <= 0:
+            self.dying = True
             if self.dying:
                 if self.frameTimer < self.frameTimerMax :
                     self.frameTimer += 1

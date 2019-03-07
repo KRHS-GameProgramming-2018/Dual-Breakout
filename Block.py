@@ -21,7 +21,7 @@ class Block():
         self.hp = 1
         
         self.living = True
-        self.dying = True
+        self.dying = False
         self.frame = 0 
         self.frameMax = len(self.images) -1 
         self.frameTimer = 0
@@ -45,6 +45,7 @@ class Block():
     
     def update(self):
         if self.hp <= 0:
+            self.dying = True
             if self.dying:
                 if self.frameTimer < self.frameTimerMax :
                     self.frameTimer += 1
