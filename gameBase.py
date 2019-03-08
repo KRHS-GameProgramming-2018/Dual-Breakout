@@ -1,4 +1,4 @@
-import pygame, sys, math, time, random, time
+import pygame, sys, math, time, random, time, webbrowser
 from Ball import *
 from Racket import *
 from Score import *
@@ -6,6 +6,7 @@ from LevelLoad import *
 from Block import *
 from BlackBlock import *
 from Button import *
+
 pygame.init()
 
 dbgTime = True
@@ -41,7 +42,7 @@ while True:
     yesButton = Button("yes", [300, 650])
     quitwinButton = Button("wquit", [900, 625])
     menuButton = Button("menu", [300, 625])
-    
+    gButton = Button("g", [530, 265])
     
     ###########START####
     
@@ -72,11 +73,13 @@ while True:
                     mediumButton.checkHover(event.pos)
                     hardButton.checkHover(event.pos)
                     quitButton.checkHover(event.pos)
+                    gButton.checkHover(event.pos)
                 else:
                     easyButton.checkClick(event.pos)
                     mediumButton.checkClick(event.pos)
                     hardButton.checkClick(event.pos)
                     quitButton.checkClick(event.pos)
+                    gButton.checkClick(event.pos)
                     
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print event.button
@@ -85,25 +88,31 @@ while True:
                     mediumButton.checkClick(event.pos)
                     hardButton.checkClick(event.pos)
                     quitButton.checkClick(event.pos)
+                    gButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if easyButton.collidePt(event.pos):
                     level = loadLevel ("Levels/1.lvl")
-                    bgimage = pygame.image.load("screens/backroundEasy.png")
+                    bgimage = pygame.image.load("Screens/backroundEasy.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
                 if mediumButton.collidePt(event.pos):
                     level = loadLevel ("Levels/2.lvl")
-                    bgimage = pygame.image.load("screens/backround1.png")
+                    bgimage = pygame.image.load("Screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
                 if hardButton.collidePt(event.pos):
                     level = loadLevel ("Levels/3.lvl")
-                    bgimage = pygame.image.load("screens/backround1.png")
+                    bgimage = pygame.image.load("Screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
                     
                 if quitButton.collidePt(event.pos):
                     mode = "ays"
+                    
+                if gButton.collidePt(event.pos):
+                    bgimage = pygame.image.load("Screens/easterEgg.png")
+                    bgrect = bgimage.get_rect()
+                    mode = "g"
                     
             
         
@@ -112,6 +121,8 @@ while True:
         screen.blit(mediumButton.image, mediumButton.rect)
         screen.blit(hardButton.image, hardButton.rect)
         screen.blit(quitButton.image, quitButton.rect)
+        screen.blit(gButton.image, gButton.rect)
+        
         
         pygame.display.flip()
         clock.tick(60)
@@ -397,5 +408,13 @@ while True:
         pygame.display.flip()
         clock.tick(60)
 
-
+#######EASTEREGG#######
+    eggimage = pygame.image.load ("Screens/easterEgg.png")
+    eggrect = eggimage.get_rect()
+    while mode == "g":
+        screen.blit (bgimage, bgrect)
+        pygame.display.flip()
+        pygame.time.delay(2000)
+        webbrowser.open('https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw')
+        sys.exit()
 
