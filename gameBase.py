@@ -97,6 +97,7 @@ while True:
                     mode = "game"
                 if mediumButton.collidePt(event.pos):
                     level = loadLevel ("Levels/2.lvl")
+                    random.randint(0,50)
                     bgimage = pygame.image.load("Screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
