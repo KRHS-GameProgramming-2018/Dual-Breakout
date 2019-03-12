@@ -19,7 +19,7 @@ class Block():
         self.rect = self.image.get_rect(center=pos)
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.hp = 1
-        
+        self.score = 1
         self.living = True
         self.dying = False
         self.frame = 0 

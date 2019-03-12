@@ -9,7 +9,7 @@ from Button import *
 
 pygame.init()
 
-dbgTime = True
+dbgTime = False
 
 balls = []
 
@@ -24,7 +24,7 @@ screen = pygame.display.set_mode(size)
 
 start = time.clock()
 
-            
+
 mode = "start"
 
 while True: 
@@ -97,8 +97,7 @@ while True:
                     mode = "game"
                 if mediumButton.collidePt(event.pos):
                     level = loadLevel ("Levels/2.lvl")
-                    random.randint(0,50)
-                    bgimage = pygame.image.load("Screens/backround1.png")
+                    bgimage = pygame.image.load("Screens/RandomWall.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
                 if hardButton.collidePt(event.pos):
@@ -130,17 +129,15 @@ while True:
     
     
     
-    for i in range(1):
-        images = ["Ball/ball.png"]
-        speed = [5,5]
-        pos = [random.randint(300,1000),300]
-        balls += [Ball(images[0], speed, pos)]
+    balls = []
+    
+    speed = [5,5]
+    pos = [random.randint(300,1000),300]
+    balls += [Ball("Ball/ball.png", speed, pos)]
 
-    for i in range(1):
-        images = ["Ball/ball.png"]
-        speed = [5,-5]
-        pos = [random.randint(300,1000),650]
-        balls += [Ball(images[0], speed, pos)]
+    speed = [5,-5]
+    pos = [random.randint(300,1000),650]
+    balls += [Ball("Ball/ball.png", speed, pos)]
 
 
     rkt= racket("Racket/racket.png", 15, [width/2, height-10])
@@ -220,19 +217,16 @@ while True:
                 print "racket 2"
                 ball.owner = 2
             for block in level:
-                if ball.blockcollide(block):
-                    if ball.owner == 1:
-                        rkt.score +=1
-                    elif ball.owner == 2:
-                        rkt2.score +=1
                 block.pbcollide(ball)
-            for blackblock in level: 
                 if ball.blockcollide(block):
+                    if block.hp <= 0:
+                        print "hit"
                         if ball.owner == 1:
-                            rkt.score +=2
+                            rkt.score += block.score
                         elif ball.owner == 2:
-                            rkt2.score +=2
-                blackblock.pbcollide(ball)
+                            rkt2.score += block.score
+                
+            
                 
         if dbgTime: print "\t Time after  collide:", time.clock() - start  
             
@@ -243,7 +237,6 @@ while True:
 
 
 
-        
         if rkt.score > rkt2.score:
             if len(level) < (rkt.score - rkt2.score):
                 mode = "p1win"
@@ -260,7 +253,7 @@ while True:
         if dbgTime: print "\t\t Time score  Draw:", time.clock() - start  
         for ball in balls:
             screen.blit(ball.image, ball.rect)
-            print "\t\t Time balls  Draw:", time.clock() - start  
+            if dbgTime: print "\t\t Time balls  Draw:", time.clock() - start  
         screen.blit(rkt.image, rkt.rect)
         screen.blit(rkt2.image, rkt2.rect)
         if dbgTime: print "\t\t Time paddles  Draw:", time.clock() - start  
@@ -415,7 +408,7 @@ while True:
     while mode == "g":
         screen.blit (bgimage, bgrect)
         pygame.display.flip()
-        pygame.time.delay(2000)
+        pygame.time.delay(1300)
         webbrowser.open('https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw')
         sys.exit()
 
