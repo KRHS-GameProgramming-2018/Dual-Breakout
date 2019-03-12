@@ -29,9 +29,10 @@ class Ball():
         self.radius = (self.rect.width/2 + self.rect.height/2)/2
         self.didBounceX = False
         self.didBounceY = False
-        
+        self.speedChange = .2
         self.living = True
         self.dying = False
+        self.amount = 2
         self.frame = 0 
         self.frameMax = len(self.images) -1 
         self.frameTimer = 0
@@ -120,7 +121,7 @@ class Ball():
                                     if self.rect.centerx > other.rect.centerx:
                                         self.speedx = -self.speedx
                                         self.didBounceX = True
-                                        
+                                    
                             if not self.didBounceY:
                                 if self.speedy > 1: #down
                                     if self.rect.centery < other.rect.centery:
@@ -130,8 +131,11 @@ class Ball():
                                     if self.rect.centery > other.rect.centery:
                                         self.speedy  = -self.speedy
                                         self.didBounceY = True
+                     
+                            self.speedx += random.randint(-2, 2)/10.0
+                            self.speedy += random.randint(-2, 2)/10.0
 
-                                return True
+                            return True
         return False
 
     def blockcollide(self, other):
@@ -161,6 +165,9 @@ class Ball():
                                             self.speedy  = -self.speedy
                                             self.didBounceY = True
 
-                                    return True
+                                self.speedx += random.randint(-2, 2)/10.0
+                                self.speedy += random.randint(-2, 2)/10.0
+                                    
+                                return True
             return False
-    
+

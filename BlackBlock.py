@@ -6,12 +6,11 @@ class BlackBlock():
                        pygame.image.load("Blocks/Black/black2.png"),
                        pygame.image.load("Blocks/Black/black3.png"),
                        pygame.image.load("Blocks/Black/blackAni1.png"),
-                       pygame.image.load("Blocks/Black/blackAni1.png"),
-                       pygame.image.load("Blocks/Black/blackAni2.png"),
                        pygame.image.load("Blocks/Black/blackAni2.png"),
                        pygame.image.load("Blocks/Black/blackAni3.png"),
-                       pygame.image.load("Blocks/Black/blackAni3.png"),]
+                      ]
         self.hp = 3
+        self.score = 2
         self.living = True
         self.dying = False
         self.frame = 0 
@@ -29,8 +28,8 @@ class BlackBlock():
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
                         if self.radius+other.radius > self.getDist(other.rect.center):
-                            self.hp = self.hp - 1
-                            self.frame +=1
+                            print self.hp 
+                            self.hp -=1
                             print "ouch"
               
     def getDist(self, pt):
@@ -43,9 +42,12 @@ class BlackBlock():
     def update(self):
         if self.hp == 2:
             self.image = self.images[1]
+            print "2"
         if self.hp == 1:
             self.image = self.images[2]
+            print "1"
         if self.hp <= 0:
+            print "dead"
             self.dying = True
             if self.dying:
                 if self.frameTimer < self.frameTimerMax :
