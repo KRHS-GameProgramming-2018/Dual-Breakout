@@ -28,8 +28,7 @@ start = time.clock()
 mode = "start"
 
 while True: 
-    menuimage = pygame.image.load ("Screens/MainMenu.png")
-    menurect = menuimage.get_rect()
+    
     startimages = [ pygame.image.load ("Screens/backroundStartScreen.png"),
                     pygame.image.load ("Screens/backroundStartScreen2.png"),
                     pygame.image.load ("Screens/backroundStartScreen3.png")]
@@ -41,6 +40,12 @@ while True:
     aniTimer = 0
     aniTimerMax = 60/7
     
+    menuimages = [ pygame.image.load ("Screens/MainMenu.png"),
+                    pygame.image.load ("Screens/MainMenu2.png"),
+                    pygame.image.load ("Screens/MainMenu3.png")]
+    menuimage = menuimages[currentImage]
+    menurect = menuimage.get_rect()
+    lastImage = len(menuimages)-1
     
     easyButton = Button("easy", [width/2, 420])
     mediumButton = Button("medium", [width/2, 530])
@@ -132,7 +137,15 @@ while True:
                     bgrect = bgimage.get_rect()
                     mode = "g"
                     
-            
+        if aniTimer < aniTimerMax:
+            aniTimer += 1
+        else:
+            aniTimer = 0
+            if currentImage < lastImage:
+                currentImage += 1
+            else:
+                currentImage = 0
+            menuimage = menuimages [currentImage]
         
         screen.blit(menuimage, menurect)
         screen.blit(easyButton.image, easyButton.rect)
@@ -349,8 +362,12 @@ while True:
 
 ########Player 1 Wins######
 
-    endimage = pygame.image.load ("Screens/p1Win.png")
+    endimages = [ pygame.image.load ("Screens/p1Win.png"),
+                   pygame.image.load ("Screens/p1Win2.png"),
+                   pygame.image.load ("Screens/p1Win3.png")]
+    endimage = endimages[currentImage]
     endrect = endimage.get_rect()
+    lastImage = len(endimages)-1
     while mode == "p1win":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -376,7 +393,17 @@ while True:
                 if menuButton.collidePt(event.pos):
                     mode = "menu"
                         
+        if aniTimer < aniTimerMax:
+            aniTimer += 1
+        else:
+            aniTimer = 0
+            if currentImage < lastImage:
+                currentImage += 1
+            else:
+                currentImage = 0
+            endimage = endimages [currentImage]
         
+            
         screen.blit(endimage, endrect)
         screen.blit(quitwinButton.image, quitwinButton.rect)
         screen.blit(menuButton.image, menuButton.rect)
@@ -386,8 +413,12 @@ while True:
         
 #########Player 2 Wins########
 
-    endimage = pygame.image.load ("Screens/p2Win.png")
+    endimages = [ pygame.image.load ("Screens/p2Win.png"),
+                   pygame.image.load ("Screens/p2Win2.png"),
+                   pygame.image.load ("Screens/p2Win3.png")]
+    endimage = endimages[currentImage]
     endrect = endimage.get_rect()
+    lastImage = len(endimages)-1
     while mode == "p2win":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -413,7 +444,16 @@ while True:
                 if menuButton.collidePt(event.pos):
                     mode = "menu"
                         
-        
+        if aniTimer < aniTimerMax:
+            aniTimer += 1
+        else:
+            aniTimer = 0
+            if currentImage < lastImage:
+                currentImage += 1
+            else:
+                currentImage = 0
+            endimage = endimages [currentImage]
+            
         screen.blit(endimage, endrect)
         screen.blit(quitwinButton.image, quitwinButton.rect)
         screen.blit(menuButton.image, menuButton.rect)
