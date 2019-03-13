@@ -38,7 +38,10 @@ class Button():
             self.basicImage = pygame.image.load("Buttons/gBasic.png")
             self.hoverImage = pygame.image.load("Buttons/gHover.png")
             self.clickImage = pygame.image.load("Buttons/gClick.png")
-            
+        if kind == "pew":
+            self.basicImage = pygame.image.load("Buttons/pewdiepieBasic.png")
+            self.hoverImage = pygame.image.load("Buttons/pewdiepieHover.png")
+            self.clickImage = pygame.image.load("Buttons/pewdiepieClick.png")
             
         self.image = self.basicImage
         self.rect = self.image.get_rect(center=pos)

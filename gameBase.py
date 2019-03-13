@@ -30,8 +30,16 @@ mode = "start"
 while True: 
     menuimage = pygame.image.load ("Screens/MainMenu.png")
     menurect = menuimage.get_rect()
-    startimage = pygame.image.load ("Screens/backroundStartScreen.png")
+    startimages = [ pygame.image.load ("Screens/backroundStartScreen.png"),
+                    pygame.image.load ("Screens/backroundStartScreen2.png"),
+                    pygame.image.load ("Screens/backroundStartScreen3.png")]
+    currentImage = 0
+    lastImage = len(startimages)-1
+    startimage = startimages [currentImage]
     startrect = startimage.get_rect()
+    
+    aniTimer = 0
+    aniTimerMax = 60/7
     
     
     easyButton = Button("easy", [width/2, 420])
@@ -54,6 +62,16 @@ while True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     mode = "menu"
+        
+        if aniTimer < aniTimerMax:
+            aniTimer += 1
+        else:
+            aniTimer = 0
+            if currentImage < lastImage:
+                currentImage += 1
+            else:
+                currentImage = 0
+            startimage = startimages [currentImage]
         
         screen.blit(startimage, startrect)
         pygame.display.flip()
@@ -97,7 +115,7 @@ while True:
                     mode = "game"
                 if mediumButton.collidePt(event.pos):
                     level = loadLevel ("Levels/2.lvl")
-                    bgimage = pygame.image.load("Screens/RandomWall.png")
+                    bgimage = pygame.image.load("Screens/backround1.png")
                     bgrect = bgimage.get_rect()
                     mode = "game"
                 if hardButton.collidePt(event.pos):
