@@ -165,8 +165,8 @@ class Ball():
                                             self.speedy  = -self.speedy
                                             self.didBounceY = True
 
-                                self.speedx += random.randint(-2, 2)/10.0
-                                self.speedy += random.randint(-2, 2)/10.0
+                                self.speedx += random.randint(-3, 3)/10.0
+                                self.speedy += random.randint(-3, 3)/10.0
                                     
                                 return True
             return False

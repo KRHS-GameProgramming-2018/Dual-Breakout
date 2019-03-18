@@ -56,6 +56,7 @@ while True:
     quitwinButton = Button("wquit", [900, 625])
     menuButton = Button("menu", [300, 625])
     gButton = Button("g", [530, 265])
+    pewButton = Button("pew", [1170, 205])
     
     ###########START####
     
@@ -97,12 +98,14 @@ while True:
                     hardButton.checkHover(event.pos)
                     quitButton.checkHover(event.pos)
                     gButton.checkHover(event.pos)
+                    pewButton.checkHover(event.pos)
                 else:
                     easyButton.checkClick(event.pos)
                     mediumButton.checkClick(event.pos)
                     hardButton.checkClick(event.pos)
                     quitButton.checkClick(event.pos)
                     gButton.checkClick(event.pos)
+                    pewButton.checkClick(event.pos)
                     
             if event.type == pygame.MOUSEBUTTONDOWN:
                 print event.button
@@ -112,22 +115,23 @@ while True:
                     hardButton.checkClick(event.pos)
                     quitButton.checkClick(event.pos)
                     gButton.checkClick(event.pos)
+                    pewButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if easyButton.collidePt(event.pos):
                     level = loadLevel ("Levels/1.lvl")
                     bgimage = pygame.image.load("Screens/backroundEasy.png")
                     bgrect = bgimage.get_rect()
-                    mode = "game"
+                    mode = "countdown"
                 if mediumButton.collidePt(event.pos):
                     level = loadLevel ("Levels/2.lvl")
                     bgimage = pygame.image.load("Screens/backround1.png")
                     bgrect = bgimage.get_rect()
-                    mode = "game"
+                    mode = "countdown"
                 if hardButton.collidePt(event.pos):
                     level = loadLevel ("Levels/3.lvl")
                     bgimage = pygame.image.load("Screens/backround1.png")
                     bgrect = bgimage.get_rect()
-                    mode = "game"
+                    mode = "countdown"
                     
                 if quitButton.collidePt(event.pos):
                     mode = "ays"
@@ -136,6 +140,11 @@ while True:
                     bgimage = pygame.image.load("Screens/easterEgg.png")
                     bgrect = bgimage.get_rect()
                     mode = "g"
+                    
+                if pewButton.collidePt(event.pos):
+                    bgimage = pygame.image.load("Screens/easterEgg.png")
+                    bgrect = bgimage.get_rect()
+                    mode = "pew"
                     
         if aniTimer < aniTimerMax:
             aniTimer += 1
@@ -153,6 +162,7 @@ while True:
         screen.blit(hardButton.image, hardButton.rect)
         screen.blit(quitButton.image, quitButton.rect)
         screen.blit(gButton.image, gButton.rect)
+        screen.blit(pewButton.image, pewButton.rect)
         
         
         pygame.display.flip()
@@ -175,6 +185,70 @@ while True:
     rktScore = Score(0, [50, height-25])
     rkt2= racket("Racket/racket.png", 15, [width/2, 10])
     rkt2Score = Score(0, [width-50, 25])
+
+#######################COUNTDOWN#####
+
+    countimages = [ pygame.image.load ("Screens/Countdown1.png"),
+                    pygame.image.load ("Screens/Countdown2.png"),
+                    pygame.image.load ("Screens/Countdown3.png")]
+    countimage = countimages[currentImage]
+    countrect = countimage.get_rect()
+    lastImage = len(countimages)-1
+    
+    currentImageNum = 0
+    
+    numimages = [ pygame.image.load ("Screens/3.png"),
+                  pygame.image.load ("Screens/2.png"),
+                  pygame.image.load ("Screens/1.png"),
+                  pygame.image.load ("Screens/1.png")]
+    numimage = numimages[currentImageNum]
+    numrect = numimage.get_rect(center = [width/2, height/2])
+    lastImageNum = len(numimages)-1
+    
+    aniTimerNum = 0
+    aniTimerNumMax = 60/1
+
+    while mode == "countdown":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        
+        
+        
+        if aniTimer < aniTimerMax:
+            aniTimer += 1
+        else:
+            aniTimer = 0
+            if currentImage < lastImage:
+                currentImage += 1
+            else:
+                currentImage = 0
+            countimage = countimages [currentImage]
+            
+        if aniTimerNum < aniTimerNumMax:
+            aniTimerNum += 1
+        else:
+            aniTimerNum = 0
+            if currentImageNum < lastImageNum:
+                currentImageNum += 1
+            else:
+                currentImage = 0
+            numimage = numimages [currentImageNum]
+            
+        if numimage == numimages[3]:
+            mode = "game"
+            
+            
+        
+        
+        screen.blit(countimage, countrect)
+        screen.blit(numimage, numrect)
+        pygame.display.flip()
+        clock.tick(60)
+
+
+
+
 
 
     ###########GAME######
@@ -266,7 +340,8 @@ while True:
             if not block.living:
                 level.remove(block)
 
-
+    
+        
 
         if rkt.score > rkt2.score:
             if len(level) < (rkt.score - rkt2.score):
@@ -460,13 +535,20 @@ while True:
         pygame.display.flip()
         clock.tick(60)
 
-#######EASTEREGG#######
+#######EASTEREGG1#######
     eggimage = pygame.image.load ("Screens/easterEgg.png")
     eggrect = eggimage.get_rect()
-    while mode == "g":
+    while mode == "pew":
         screen.blit (bgimage, bgrect)
         pygame.display.flip()
         pygame.time.delay(1300)
         webbrowser.open('https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw')
         sys.exit()
+        
+    while mode == "g":
+        pygame.time.delay(300)
+        webbrowser.open('https://www.google.com/search?q=atari+breakout&safe=strict&rlz=1C1CHBF_enUS806US806&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjY_4bvjf_gAhWunuAKHYKuAysQ_AUIDigB&biw=1858&bih=1009')
+        sys.exit()
+        
+    
 
