@@ -339,8 +339,6 @@ while True:
         for block in level:
             if not block.living:
                 level.remove(block)
-
-    
         
 
         if rkt.score > rkt2.score:
